@@ -1,14 +1,24 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+import moviesOperations from "../../redux/movies/movies-operations";
 
 export default function Navigation() {
+  const dispatch = useDispatch();
+
   return (
     <nav>
       <ul>
         <li>
-          <a>bla bla</a>
+          <NavLink
+            to="/"
+            isActive={() => dispatch(moviesOperations.fetchPopularMovies())}
+          >
+            Home
+          </NavLink>
         </li>
         <li>
-          <a>bla bla</a>
+          <NavLink to="/library">Library</NavLink>
         </li>
       </ul>
     </nav>
