@@ -11,6 +11,7 @@ const query = createReducer("", {
 const moviesList = createReducer([], {
   [movieActions.searchMovieSuccess]: (_, { payload }) => payload,
   [movieActions.fetchPopularMovieSuccess]: (_, { payload }) => payload,
+  [movieActions.clearMovieList]: () => [],
 });
 
 const movieDetails = createReducer([], {

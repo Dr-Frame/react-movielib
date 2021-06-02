@@ -12,6 +12,10 @@ const clearQuery = () => (dispatch) => {
   dispatch(movieActions.clearQuery());
 };
 
+const clearMovieList = () => (dispatch) => {
+  dispatch(movieActions.clearMovieList());
+};
+
 const fetchSearchMovies =
   (query, page = 1) =>
   async (dispatch) => {
@@ -70,6 +74,7 @@ export default {
   fetchSearchMovies,
   fetchPopularMovies,
   fetchMovieDetails,
+  clearMovieList,
 };
 
 //https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US

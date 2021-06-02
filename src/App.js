@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./components/Header";
-import MovieList from "./components/MovieList";
 import LibraryView from "./view/LibraryView/LibraryView";
+import MovieSearch from "./view/MovieSearch/MovieSearch";
 import Homeview from "./view/Homeview/Homeview";
 import MovieDetailsPage from "./components/MovieDetailsPage";
 import { Route, Switch } from "react-router-dom";
@@ -18,8 +18,12 @@ function App() {
         <Route path="/library">
           <LibraryView />
         </Route>
-        <Route path="/movie/:id">
+
+        <Route path="/movies/:id">
           <MovieDetailsPage />
+        </Route>
+        <Route>
+          <MovieSearch path="/movies" />
         </Route>
         <Route>
           <Page404 />

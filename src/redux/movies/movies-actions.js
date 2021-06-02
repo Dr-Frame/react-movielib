@@ -27,6 +27,7 @@ const isItSearchQuery = createAction("movies/isItSearchQuery");
 
 const changeQuery = createAction("movies/changeQuery");
 const clearQuery = createAction("movies/clearQuery");
+const clearMovieList = createAction("movies/clearMovieList");
 
 export default {
   clearQuery,
@@ -43,4 +44,5 @@ export default {
   fetchTotalPages,
   fetchTotalResults,
   isItSearchQuery,
+  clearMovieList,
 };
