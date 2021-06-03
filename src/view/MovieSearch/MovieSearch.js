@@ -13,11 +13,16 @@ export default function MovieSearch() {
   const location = useLocation();
   const { state, search } = location;
   const { push } = useHistory();
+
   //из адресной строки браузера выделяем сам запрос, что бы при обновлении страницы он был как запрос.
   const initialQueryState = queryString.parse(search);
+  console.log("initialQueryState", initialQueryState);
 
+  console.log("location page", location.page);
   const [query, setQuery] = useState(initialQueryState.query || "");
-  const [page, setPage] = useState(1);
+
+  //если вернулись не с 1 страницы списка фильмов, то рендерим ее , если да, то рендерим 1
+  const [page, setPage] = useState(location.page || 1);
   console.log(location);
 
   //при маунте убираем список популярных фильмов, что бы лист был пустой
@@ -37,9 +42,10 @@ export default function MovieSearch() {
   useEffect(() => {
     push({
       ...location,
+      page,
       search: `?query=${query}`,
     });
-  }, [query, location.search]);
+  }, [query, location.search, page]);
 
   //запрос
   const changeQuery = (e) => {

@@ -4,6 +4,7 @@ import LibraryView from "./view/LibraryView/LibraryView";
 import MovieSearch from "./view/MovieSearch/MovieSearch";
 import Homeview from "./view/Homeview/Homeview";
 import MovieDetailsPage from "./components/MovieDetailsPage";
+
 import { Route, Switch } from "react-router-dom";
 import Page404 from "./view/Page404/Page404";
 
@@ -25,6 +26,7 @@ function App() {
         <Route>
           <MovieSearch path="/movies" />
         </Route>
+
         <Route>
           <Page404 />
         </Route>

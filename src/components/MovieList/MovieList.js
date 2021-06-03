@@ -49,17 +49,21 @@ export default function MovieList({
                     pathname: `movies/${id}`,
                     state: {
                       query,
+                      page,
                     },
                   }}
                 >
-                  <img
-                    src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
-                    alt=""
-                  />
+                  {poster_path && (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
+                      alt=""
+                    />
+                  )}
+
+                  <h2>{title}</h2>
+                  <p>genres</p>
+                  <p>{release_date}</p>
                 </NavLink>
-                <h2>{title}</h2>
-                <p>genres</p>
-                <p>{release_date}</p>
               </li>
             );
           })}
