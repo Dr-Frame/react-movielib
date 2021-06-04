@@ -1,7 +1,12 @@
 import React from "react";
+import { useLocation, useRouteMatch } from "react-router";
 import "./Cast.scss";
 
 export default function Cast() {
+  const location = useLocation();
+  const match = useRouteMatch();
+  console.log(match);
+  console.log(location);
   return (
     <section>
       <div className="container">

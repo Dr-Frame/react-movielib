@@ -35,9 +35,8 @@ export default function MovieDetailsPage() {
   /*   console.log("page", state.page); */
 
   //данные для страницы фильма
-  const { poster_path, title, vote_average, overview, genres } = useSelector(
-    moviesSelectors.getMovieDetails
-  );
+  const { poster_path, title, vote_average, overview, genres, release_date } =
+    useSelector(moviesSelectors.getMovieDetails);
 
   //рендерим фильм исходя из айди полученого от мувилиста через params
   useEffect(() => {
@@ -57,6 +56,7 @@ export default function MovieDetailsPage() {
     } else {
       history.push({
         pathname: "/",
+        page: state.page,
       });
     }
   };
@@ -80,6 +80,9 @@ export default function MovieDetailsPage() {
           </div>
           <div>
             <h1 className="MovieDetailsPage__top">{title}</h1>
+            <p className="MovieDetailsPage__release">
+              Release date: {release_date}
+            </p>
             <p className="MovieDetailsPage__vote">
               User rate: <span>{vote_average}</span>
             </p>
@@ -100,9 +103,7 @@ export default function MovieDetailsPage() {
             <div className="MovieDetailsPage__extra">
               <ul>
                 <li>
-                  {/* прокидываем в глубь номер страниці с которой пришли, и поисковый запрос*/}
                   <NavLink
-                    className="MovieDetailsPage__extra__link"
                     to={{
                       pathname: `${match.url}/cast`,
                       state: state,
@@ -113,7 +114,6 @@ export default function MovieDetailsPage() {
                 </li>
                 <li>
                   <NavLink
-                    className="MovieDetailsPage__extra__link"
                     to={{
                       pathname: `${match.url}/reviews`,
                       state: state,
@@ -124,45 +124,35 @@ export default function MovieDetailsPage() {
                 </li>
                 <li>
                   <NavLink
-                    className="MovieDetailsPage__extra__link"
                     to={{
                       pathname: `${match.url}/images`,
                       state: state,
                     }}
                   >
-                    MovieImages
+                    Images
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
-                    className="MovieDetailsPage__extra__link"
                     to={{
                       pathname: `${match.url}/similar`,
                       state: state,
                     }}
                   >
-                    SimilarMovies
+                    Similar
                   </NavLink>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <Switch>
-          <Route>
-            <Cast exact id={params.id} path={`${match.path}/cast`} />
-          </Route>
-          <Route>
-            <Reviews id={params.id} path={`${match.path}/reviews`} />
-          </Route>
-          <Route>
-            <MovieImages id={params.id} path={`${match.path}/images`} />
-          </Route>
-          <Route>
-            <SimilarMovies id={params.id} path={`${match.path}/similar`} />
-          </Route>
-        </Switch>
       </div>
+      <Switch>
+        <Route path={`${match.path}/cast`} component={Cast}></Route>
+        <Route path={`${match.path}/reviews`} component={Reviews}></Route>
+        <Route path={`${match.path}/images`} component={MovieImages}></Route>
+        <Route path={`${match.path}/similar`} component={SimilarMovies}></Route>
+      </Switch>
     </section>
   );
 }

@@ -13,10 +13,13 @@ import {
 } from "react-router-dom";
 
 export default function Homeview() {
+  const location = useLocation();
+  console.log(location);
+
   const dispatch = useDispatch();
   const moviesList = useSelector(moviesSelectors.getMoviesList);
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(location?.page || 1);
 
   //для пагинации
   const handlePageChange = (pageNumber) => {
