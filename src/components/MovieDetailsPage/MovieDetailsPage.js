@@ -9,10 +9,13 @@ import {
   NavLink,
 } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
+//components
 import Cast from "../MovieExtraInfo/Cast";
 import Reviews from "../MovieExtraInfo/Reviews";
 import MovieImages from "../MovieExtraInfo/MovieImages";
 import SimilarMovies from "../MovieExtraInfo/SimilarMovies";
+import Crew from "../MovieExtraInfo/Crew";
+import Recomendations from "../MovieExtraInfo/Recomendations";
 //redux
 import moviesOperations from "../../redux/movies/movies-operations";
 import moviesSelectors from "../../redux/movies/movies-selectors";
@@ -46,6 +49,7 @@ export default function MovieDetailsPage() {
   //если есть слово запрос, значит пришли со страницы поиска (пушим строку поиска что бы отобразился запрос который был), если нету то с главной
   const handleGoBack = () => {
     //проверка state на null or undefined
+    //для посика фильмов с запросом
     if (state?.query) {
       history.push({
         pathname: "/movies",
@@ -53,10 +57,18 @@ export default function MovieDetailsPage() {
         page: state.page,
         search: `?query=${state.query}`,
       });
-    } else {
+    } //если есть страница то бросаем на ту страницу популярных фильмов
+    //для популярных фильмов, возврат на нужную страницу
+    else if (state?.page) {
       history.push({
         pathname: "/",
         page: state.page,
+      });
+    }
+    // если нету ни страницы ни запроса(в случае если мы дали ссылку и в истории пусто)
+    else {
+      history.push({
+        pathname: "/",
       });
     }
   };
@@ -142,6 +154,26 @@ export default function MovieDetailsPage() {
                     Similar
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    to={{
+                      pathname: `${match.url}/crew`,
+                      state: state,
+                    }}
+                  >
+                    Crew
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to={{
+                      pathname: `${match.url}/recomendations`,
+                      state: state,
+                    }}
+                  >
+                    Recomendations
+                  </NavLink>
+                </li>
               </ul>
             </div>
           </div>
@@ -152,6 +184,11 @@ export default function MovieDetailsPage() {
         <Route path={`${match.path}/reviews`} component={Reviews}></Route>
         <Route path={`${match.path}/images`} component={MovieImages}></Route>
         <Route path={`${match.path}/similar`} component={SimilarMovies}></Route>
+        <Route path={`${match.path}/crew`} component={Crew}></Route>
+        <Route
+          path={`${match.path}/recomendations`}
+          component={Recomendations}
+        ></Route>
       </Switch>
     </section>
   );

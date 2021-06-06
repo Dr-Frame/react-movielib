@@ -1,4 +1,3 @@
-import actions from "./movies-actions";
 import axios from "axios";
 import movieActions from "./movies-actions";
 
@@ -22,7 +21,7 @@ const fetchSearchMovies =
     const link = `https://api.themoviedb.org/3/search/movie?api_key=${key}&language=en-US&query=${query}&page=${page}&include_adult=false`;
 
     dispatch(movieActions.searchMovieRequest());
-    dispatch(movieActions.isItSearchQuery());
+
     try {
       await axios.get(link).then(({ data }) => {
         console.log(data);
@@ -69,6 +68,56 @@ const fetchMovieDetails = (movieId) => async (dispatch) => {
   }
 };
 
+const fetchMovieCredits = (movieId) => async (dispatch) => {
+  const link = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${key}&language=en-US`;
+
+  dispatch(movieActions.fetchMovieCreditsRequest());
+
+  try {
+    await axios
+      .get(link)
+      .then(({ data }) =>
+        dispatch(movieActions.fetchMovieCreditsSuccess(data))
+      );
+  } catch (error) {
+    dispatch(movieActions.fetchMovieCreditsError(error));
+  }
+};
+
+const fetchMovieReviews =
+  (movieId, page = 1) =>
+  async (dispatch) => {
+    const link = `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${key}&language=en-US&page=${page}`;
+
+    dispatch(movieActions.fetchMovieReviewsRequest());
+
+    try {
+      await axios.get(link).then(({ data }) => {
+        dispatch(movieActions.fetchMovieReviewsSuccess(data.results));
+        dispatch(movieActions.fetchReviewsTotalResults(data.total_results));
+      });
+    } catch (error) {
+      dispatch(movieActions.fetchMovieReviewsError(error));
+    }
+  };
+
+const fetchSimilarMovies =
+  (movieId, page = 1) =>
+  async (dispatch) => {
+    const link = `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${key}&language=en-US&page=${page}`;
+
+    dispatch(movieActions.fetchSimilarMoviesRequest());
+
+    try {
+      await axios.get(link).then(({ data }) => {
+        dispatch(movieActions.fetchSimilarMoviesSuccess(data.results));
+        dispatch(movieActions.fetchSimalarMoviesResults(data.total_results));
+      });
+    } catch (error) {
+      dispatch(movieActions.fetchSimilarMoviesError(error));
+    }
+  };
+
 export default {
   clearQuery,
   changeQuery,
@@ -76,6 +125,9 @@ export default {
   fetchPopularMovies,
   fetchMovieDetails,
   clearMovieList,
+  fetchMovieCredits,
+  fetchMovieReviews,
+  fetchSimilarMovies,
 };
 
 //https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
