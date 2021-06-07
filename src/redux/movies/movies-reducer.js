@@ -28,6 +28,12 @@ const movieReviews = createReducer([], {
 const similarMovies = createReducer([], {
   [movieActions.fetchSimilarMoviesSuccess]: (_, { payload }) => payload,
 });
+const movieRecomendations = createReducer([], {
+  [movieActions.fetchMovieRecomendationsSuccess]: (_, { payload }) => payload,
+});
+const movieImages = createReducer([], {
+  [movieActions.fetchMovieImagesSuccess]: (_, { payload }) => payload,
+});
 
 //Количество результатов каких либо запросов
 
@@ -42,6 +48,24 @@ const movieTotalReviews = createReducer("", {
 });
 const similarMoviesTotalResults = createReducer("", {
   [movieActions.fetchSimalarMoviesResults]: (_, { payload }) => payload,
+});
+
+// LocalStorage массивы
+const favouriteMovies = createReducer([], {
+  [movieActions.addToFavourite]: (state, { payload }) => [...state, payload],
+  [movieActions.deleteFromFavourite]: (state, { payload }) =>
+    state.filter((movie) => Number(movie.id) !== Number(payload)),
+});
+
+const watchedMovies = createReducer([], {
+  [movieActions.addToWatched]: (state, { payload }) => [...state, payload],
+  [movieActions.deleteFromWatched]: (state, { payload }) =>
+    state.filter((movie) => Number(movie.id) !== Number(payload)),
+});
+const moviesInQueue = createReducer([], {
+  [movieActions.addToQueue]: (state, { payload }) => [...state, payload],
+  [movieActions.deleteFromQueue]: (state, { payload }) =>
+    state.filter((movie) => Number(movie.id) !== Number(payload)),
 });
 
 //процес загрузки данных
@@ -64,6 +88,12 @@ const isLoading = createReducer(false, {
   [movieActions.fetchSimilarMoviesRequest]: () => true,
   [movieActions.fetchSimilarMoviesSuccess]: () => false,
   [movieActions.fetchSimilarMoviesError]: () => false,
+  [movieActions.fetchMovieRecomendationsRequest]: () => true,
+  [movieActions.fetchMovieRecomendationsSuccess]: () => false,
+  [movieActions.fetchMovieRecomendationsError]: () => false,
+  [movieActions.fetchMovieImagesRequest]: () => true,
+  [movieActions.fetchMovieImagesSuccess]: () => false,
+  [movieActions.fetchMovieImagesError]: () => false,
 });
 
 export default combineReducers({
@@ -78,4 +108,9 @@ export default combineReducers({
   movieReviews,
   similarMoviesTotalResults,
   similarMovies,
+  movieRecomendations,
+  movieImages,
+  favouriteMovies,
+  watchedMovies,
+  moviesInQueue,
 });

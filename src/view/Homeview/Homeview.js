@@ -18,18 +18,13 @@ export default function Homeview() {
 
   const dispatch = useDispatch();
   const moviesList = useSelector(moviesSelectors.getMoviesList);
-
+  const totalResults = useSelector(moviesSelectors.getTotalResults);
   const [page, setPage] = useState(location?.page || 1);
 
   //для пагинации
   const handlePageChange = (pageNumber) => {
     setPage(pageNumber);
   };
-
-  //при маунте сетим страницу 1 (пока не нужно вродь)
-  /* useEffect(() => {
-    setPage(1);
-  }, []); */
 
   //при маунте и смене страниц рендерим популярніе фильмы
   useEffect(() => {
@@ -44,6 +39,7 @@ export default function Homeview() {
             moviesList={moviesList}
             page={page}
             handlePageChange={handlePageChange}
+            totalResults={totalResults}
           />
         </div>
       </section>

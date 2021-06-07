@@ -55,6 +55,30 @@ const fetchSimalarMoviesResults = createAction(
   "movies/fetchSimalarMoviesResults"
 );
 
+//фильмы рекомендации
+const fetchMovieRecomendationsRequest = createAction(
+  "movies/fetchMovieRecomendationsRequest"
+);
+const fetchMovieRecomendationsSuccess = createAction(
+  "movies/fetchMovieRecomendationsSuccess"
+);
+const fetchMovieRecomendationsError = createAction(
+  "movies/fetchMovieRecomendationsError"
+);
+
+//картинки с фильма
+const fetchMovieImagesRequest = createAction("movies/fetchMovieImagesRequest");
+const fetchMovieImagesSuccess = createAction("movies/fetchMovieImagesSuccess");
+const fetchMovieImagesError = createAction("movies/fetchMovieImagesError");
+
+//local storage actions
+const addToFavourite = createAction("movies/addToFavourite");
+const deleteFromFavourite = createAction("movies/deleteFromFavourite");
+const addToWatched = createAction("movies/addToWatched");
+const deleteFromWatched = createAction("movies/deleteFromWatched");
+const addToQueue = createAction("movies/addToQueue");
+const deleteFromQueue = createAction("movies/deleteFromQueue");
+
 //доп действия
 const changeQuery = createAction("movies/changeQuery");
 const clearQuery = createAction("movies/clearQuery");
@@ -86,4 +110,16 @@ export default {
   fetchSimilarMoviesSuccess,
   fetchSimilarMoviesError,
   fetchSimalarMoviesResults,
+  fetchMovieRecomendationsRequest,
+  fetchMovieRecomendationsSuccess,
+  fetchMovieRecomendationsError,
+  fetchMovieImagesRequest,
+  fetchMovieImagesSuccess,
+  fetchMovieImagesError,
+  addToFavourite,
+  addToWatched,
+  addToQueue,
+  deleteFromFavourite,
+  deleteFromWatched,
+  deleteFromQueue,
 };

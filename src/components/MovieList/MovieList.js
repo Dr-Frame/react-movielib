@@ -11,9 +11,10 @@ export default function MovieList({
   page,
   handlePageChange,
   query,
+  totalResults,
 }) {
   const isLoading = useSelector(moviesSelectors.getLoading);
-  const totalResults = useSelector(moviesSelectors.getTotalResults);
+
   const [resultsPerPage, setResultsPerPage] = useState(20);
 
   return (

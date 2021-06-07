@@ -11,6 +11,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import moviesReducer from "./movies/movies-reducer";
+import storage from "redux-persist/lib/storage";
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -21,9 +22,15 @@ const middleware = [
   logger,
 ];
 
+const authPersistConfig = {
+  key: "movies",
+  storage,
+  whitelist: ["favouriteMovies", "watchedMovies", "moviesInQueue"],
+};
+
 const store = configureStore({
   reducer: {
-    movies: moviesReducer,
+    movies: persistReducer(authPersistConfig, moviesReducer),
   },
   middleware,
   devTools: process.env.NODE_ENV === "development",

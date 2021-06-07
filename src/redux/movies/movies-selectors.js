@@ -11,6 +11,11 @@ const getTotalReviewResults = (state) => state.movies.movieTotalReviews;
 const getSimilarMovies = (state) => state.movies.similarMovies;
 const getSimilarMoviesAmount = (state) =>
   state.movies.similarMoviesTotalResults;
+const getMovieRecomendationsList = (state) => state.movies.movieRecomendations;
+const getMoviePictures = (state) => state.movies.movieImages;
+const getFavorited = (state) => state.movies.favouriteMovies;
+const getWatched = (state) => state.movies.watchedMovies;
+const getInQueue = (state) => state.movies.moviesInQueue;
 
 export default {
   getQuery,
@@ -25,4 +30,9 @@ export default {
   getTotalReviewResults,
   getSimilarMovies,
   getSimilarMoviesAmount,
+  getMovieRecomendationsList,
+  getMoviePictures,
+  getFavorited,
+  getWatched,
+  getInQueue,
 };

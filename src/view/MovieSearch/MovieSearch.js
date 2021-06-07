@@ -60,6 +60,8 @@ export default function MovieSearch() {
     dispatch(moviesOperations.fetchSearchMovies(query));
   };
 
+  const totalResults = useSelector(moviesSelectors.getTotalResults);
+
   //для пагинации функция
   const handlePageChange = (pageNumber) => {
     setPage(pageNumber);
@@ -78,6 +80,7 @@ export default function MovieSearch() {
         query={query}
         page={page}
         handlePageChange={handlePageChange}
+        totalResults={totalResults}
       />
     </section>
   );

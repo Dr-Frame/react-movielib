@@ -118,6 +118,60 @@ const fetchSimilarMovies =
     }
   };
 
+const fetchMovieRecomendations =
+  (movieId, page = 1) =>
+  async (dispatch) => {
+    const link = `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${key}&language=en-US&page=${page}`;
+
+    dispatch(movieActions.fetchMovieRecomendationsRequest());
+
+    try {
+      await axios
+        .get(link)
+        .then(({ data }) =>
+          dispatch(movieActions.fetchMovieRecomendationsSuccess(data.results))
+        );
+    } catch (error) {
+      dispatch(movieActions.fetchMovieRecomendationsError(error));
+    }
+  };
+
+const fetchMovieImages = (movieId) => async (dispatch) => {
+  const link = `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${key}&language=en-US`;
+
+  dispatch(movieActions.fetchMovieImagesRequest());
+
+  try {
+    await axios
+      .get(link)
+      .then(({ data }) => dispatch(movieActions.fetchMovieImagesSuccess(data)));
+  } catch (error) {
+    dispatch(movieActions.fetchMovieImagesError(error));
+  }
+};
+
+//для работы с массивами из локалстораджа
+const addToFavourite = (movie) => (dispatch) => {
+  dispatch(movieActions.addToFavourite(movie));
+};
+const deleteFromFavourite = (movieId) => (dispatch) => {
+  dispatch(movieActions.deleteFromFavourite(movieId));
+};
+
+const addToWatched = (movie) => (dispatch) => {
+  dispatch(movieActions.addToWatched(movie));
+};
+const deleteFromWatched = (movieId) => (dispatch) => {
+  dispatch(movieActions.deleteFromWatched(movieId));
+};
+
+const addToQueue = (movie) => (dispatch) => {
+  dispatch(movieActions.addToQueue(movie));
+};
+const deleteFromQueue = (movieId) => (dispatch) => {
+  dispatch(movieActions.deleteFromQueue(movieId));
+};
+
 export default {
   clearQuery,
   changeQuery,
@@ -128,6 +182,14 @@ export default {
   fetchMovieCredits,
   fetchMovieReviews,
   fetchSimilarMovies,
+  fetchMovieRecomendations,
+  fetchMovieImages,
+  addToFavourite,
+  deleteFromFavourite,
+  addToWatched,
+  deleteFromWatched,
+  addToQueue,
+  deleteFromQueue,
 };
 
 //https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
