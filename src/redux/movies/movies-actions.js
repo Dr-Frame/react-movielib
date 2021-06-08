@@ -72,8 +72,13 @@ const fetchMovieImagesSuccess = createAction("movies/fetchMovieImagesSuccess");
 const fetchMovieImagesError = createAction("movies/fetchMovieImagesError");
 
 //local storage actions
-const addToFavourite = createAction("movies/addToFavourite");
-const deleteFromFavourite = createAction("movies/deleteFromFavourite");
+const addToFavourite = createAction("movies/addToFavourite", (movie) => ({
+  payload: movie,
+}));
+const deleteFromFavourite = createAction(
+  "movies/deleteFromFavourite",
+  (movieId) => ({ payload: movieId })
+);
 const addToWatched = createAction("movies/addToWatched");
 const deleteFromWatched = createAction("movies/deleteFromWatched");
 const addToQueue = createAction("movies/addToQueue");

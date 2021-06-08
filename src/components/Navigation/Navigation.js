@@ -14,6 +14,9 @@ export default function Navigation() {
         <li>
           <NavLink to="/library">Library</NavLink>
         </li>
+        <li>
+          <NavLink to="/favorite">Favorite List</NavLink>
+        </li>
       </ul>
     </nav>
   );

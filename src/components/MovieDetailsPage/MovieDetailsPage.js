@@ -19,6 +19,8 @@ import Recomendations from "../MovieExtraInfo/Recomendations";
 //redux
 import moviesOperations from "../../redux/movies/movies-operations";
 import moviesSelectors from "../../redux/movies/movies-selectors";
+import movieActions from "../../redux/movies/movies-actions";
+import MoviePageBtn from "../MoviePageBtn/MoviePageBtn";
 
 export default function MovieDetailsPage() {
   const dispatch = useDispatch();
@@ -27,7 +29,8 @@ export default function MovieDetailsPage() {
   const match = useRouteMatch();
   const { params } = match;
   const history = useHistory();
-
+  console.log(location);
+  console.log(history);
   //рендерим фильм исходя из айди полученого от мувилиста через params
   useEffect(() => {
     dispatch(moviesOperations.fetchMovieDetails(params.id));
@@ -88,34 +91,65 @@ export default function MovieDetailsPage() {
     useState(false);
   const [isMovieIncludedInQueue, setIsMovieIncludedInQueue] = useState(false);
 
-  console.log(isMovieIncludedInQueue);
-  console.log(currentMovie.id);
-  //проверка на нахождение в массиве фильма
-  const check = useCallback((movieList, currentFilm, set) => {
-    movieList.map((film) => {
-      if (film.id === currentFilm.id) {
+  //проверка на можно добавить или удалить
+  const moviePresenseInArrayCheck = useCallback((movieList, currentId, set) => {
+    for (const movie of movieList) {
+      if (movie.id === currentId) {
         set(true);
-      } else {
+        return;
+      } else if (movie.id !== currentId) {
         set(false);
       }
-    });
+    }
   }, []);
 
-  //проверка на можно добавить или удалить с любиміх
+  //для фейворит
   useEffect(
-    () => check(favorited, currentMovie, setIsMovieIncludedInFavourites),
-    [check, favorited, currentMovie]
+    () =>
+      moviePresenseInArrayCheck(
+        favorited,
+        currentMovie.id,
+        setIsMovieIncludedInFavourites
+      ),
+    [favorited, currentMovie.id, moviePresenseInArrayCheck]
   );
-  //проверка на добавленніе
   useEffect(
-    () => check(watched, currentMovie, setIsMovieIncludedInWatched),
-    [check, watched, currentMovie]
+    () =>
+      moviePresenseInArrayCheck(
+        watched,
+        currentMovie.id,
+        setIsMovieIncludedInWatched
+      ),
+    [watched, currentMovie.id, moviePresenseInArrayCheck]
   );
-  //проверка на очередь
   useEffect(
-    () => check(inQueue, currentMovie, setIsMovieIncludedInQueue),
-    [check, inQueue, currentMovie]
+    () =>
+      moviePresenseInArrayCheck(
+        inQueue,
+        currentMovie.id,
+        setIsMovieIncludedInQueue
+      ),
+    [inQueue, currentMovie.id, moviePresenseInArrayCheck]
   );
+
+  /*  useEffect(() => {
+    for (const movie of favorited) {
+      if (movie.id === currentMovie.id) {
+        setIsMovieIncludedInFavourites(true);
+        console.log("фильм совпал, есть в фейворит: ", movie.title);
+        console.log("текущий фильм: ", currentMovie.title);
+        console.log(favorited);
+        console.log("внутри цикла", isMovieIncludedInFavourites);
+        return;
+      } else if (movie.id !== currentMovie.id) {
+        setIsMovieIncludedInFavourites(false);
+        console.log(
+          "внутри цикла- не в списке феворит",
+          isMovieIncludedInFavourites
+        );
+      }
+    }
+  }, [favorited, currentMovie]); */
 
   return (
     <section>
@@ -130,9 +164,8 @@ export default function MovieDetailsPage() {
               <button
                 className="MovieDetailsPage__btn-pack__btn"
                 onClick={() => {
-                  dispatch(
-                    moviesOperations.deleteFromFavourite(currentMovie.id)
-                  );
+                  dispatch(movieActions.deleteFromFavourite(currentMovie.id));
+                  setIsMovieIncludedInFavourites(false);
                 }}
               >
                 Delete from favourites
@@ -142,9 +175,9 @@ export default function MovieDetailsPage() {
             <li>
               <button
                 className="MovieDetailsPage__btn-pack__btn"
-                onClick={() => {
-                  dispatch(moviesOperations.addToFavourite(currentMovie));
-                }}
+                onClick={() =>
+                  dispatch(movieActions.addToFavourite(currentMovie))
+                }
               >
                 Add to favorites
               </button>
@@ -155,7 +188,8 @@ export default function MovieDetailsPage() {
               <button
                 className="MovieDetailsPage__btn-pack__btn"
                 onClick={() => {
-                  dispatch(moviesOperations.deleteFromWatched(currentMovie.id));
+                  dispatch(movieActions.deleteFromWatched(currentMovie.id));
+                  setIsMovieIncludedInWatched(false);
                 }}
               >
                 Delete from watched
@@ -165,21 +199,21 @@ export default function MovieDetailsPage() {
             <li>
               <button
                 className="MovieDetailsPage__btn-pack__btn"
-                onClick={() => {
-                  dispatch(moviesOperations.addToWatched(currentMovie));
-                }}
+                onClick={() =>
+                  dispatch(movieActions.addToWatched(currentMovie))
+                }
               >
                 Add to watched
               </button>
             </li>
           )}
-
           {isMovieIncludedInQueue ? (
             <li>
               <button
                 className="MovieDetailsPage__btn-pack__btn"
                 onClick={() => {
-                  dispatch(moviesOperations.deleteFromQueue(currentMovie.id));
+                  dispatch(movieActions.deleteFromQueue(currentMovie.id));
+                  setIsMovieIncludedInQueue(false);
                 }}
               >
                 Delete from queue
@@ -189,9 +223,7 @@ export default function MovieDetailsPage() {
             <li>
               <button
                 className="MovieDetailsPage__btn-pack__btn"
-                onClick={() => {
-                  dispatch(moviesOperations.addToQueue(currentMovie));
-                }}
+                onClick={() => dispatch(movieActions.addToQueue(currentMovie))}
               >
                 Add to queue
               </button>

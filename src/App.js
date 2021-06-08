@@ -4,6 +4,7 @@ import LibraryView from "./view/LibraryView/LibraryView";
 import MovieSearch from "./view/MovieSearch/MovieSearch";
 import Homeview from "./view/Homeview/Homeview";
 import MovieDetailsPage from "./components/MovieDetailsPage";
+import Favorite from "./components/Favorite";
 
 import { Route, Switch } from "react-router-dom";
 import Page404 from "./view/Page404/Page404";
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route path="/library">
           <LibraryView />
+        </Route>
+        <Route path="/favorite">
+          <Favorite />
         </Route>
 
         <Route path="/movies/:id">

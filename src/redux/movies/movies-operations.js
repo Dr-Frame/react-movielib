@@ -150,27 +150,13 @@ const fetchMovieImages = (movieId) => async (dispatch) => {
   }
 };
 
-//для работы с массивами из локалстораджа
+/* //для работы с массивами из локалстораджа
 const addToFavourite = (movie) => (dispatch) => {
   dispatch(movieActions.addToFavourite(movie));
 };
 const deleteFromFavourite = (movieId) => (dispatch) => {
   dispatch(movieActions.deleteFromFavourite(movieId));
-};
-
-const addToWatched = (movie) => (dispatch) => {
-  dispatch(movieActions.addToWatched(movie));
-};
-const deleteFromWatched = (movieId) => (dispatch) => {
-  dispatch(movieActions.deleteFromWatched(movieId));
-};
-
-const addToQueue = (movie) => (dispatch) => {
-  dispatch(movieActions.addToQueue(movie));
-};
-const deleteFromQueue = (movieId) => (dispatch) => {
-  dispatch(movieActions.deleteFromQueue(movieId));
-};
+}; */
 
 export default {
   clearQuery,
@@ -184,12 +170,6 @@ export default {
   fetchSimilarMovies,
   fetchMovieRecomendations,
   fetchMovieImages,
-  addToFavourite,
-  deleteFromFavourite,
-  addToWatched,
-  deleteFromWatched,
-  addToQueue,
-  deleteFromQueue,
 };
 
 //https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US

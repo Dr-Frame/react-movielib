@@ -4,30 +4,47 @@ import "./LibraryView.scss";
 import MovieList from "../../components/MovieList";
 import moviesSelectors from "../../redux/movies/movies-selectors";
 import { useState } from "react";
+import {
+  NavLink,
+  Route,
+  Switch,
+  useLocation,
+  useRouteMatch,
+} from "react-router-dom";
 
 export default function LibraryView() {
-  const [page, setPage] = useState(1);
-  //для пагинации
-  const handlePageChange = (pageNumber) => {
-    setPage(pageNumber);
-  };
+  const location = useLocation();
+  const match = useRouteMatch();
+  const { state } = location;
+  console.log(location);
+  console.log(match);
 
   const favorited = useSelector(moviesSelectors.getFavorited);
-  const unique = Array.from(new Set(favorited.map(JSON.stringify))).map(
-    JSON.parse
-  );
-  console.log(favorited);
+  const watched = useSelector(moviesSelectors.getWatched);
+  const inQueue = useSelector(moviesSelectors.getInQueue);
+
   return (
     <div className="container">
       <h1>Library</h1>
-      {favorited && (
-        <MovieList
-          moviesList={unique}
-          page={page}
-          handlePageChange={handlePageChange}
-          totalResults={unique.length}
-        />
-      )}
+      <ul>
+        <li>
+          <NavLink
+            to={{
+              pathname: `${match.url}/favorite`,
+              state: state,
+            }}
+          >
+            Favourite movies
+          </NavLink>
+        </li>
+      </ul>
+      <Switch>
+        {
+          <Route path={`${match.path}/favorite`}>
+            <MovieList moviesList={favorited} />
+          </Route>
+        }
+      </Switch>
     </div>
   );
 }

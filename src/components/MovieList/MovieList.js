@@ -13,13 +13,15 @@ export default function MovieList({
   query,
   totalResults,
 }) {
+  const location = useLocation();
+  console.log("movielist location: ", location);
   const isLoading = useSelector(moviesSelectors.getLoading);
 
   const [resultsPerPage, setResultsPerPage] = useState(20);
 
   return (
     <div>
-      {!isLoading && (
+      {!isLoading && moviesList && (
         <ul>
           {moviesList.map(
             ({ id, title, release_date, poster_path, genre_ids }) => {
@@ -62,7 +64,7 @@ export default function MovieList({
           )}
         </ul>
       )}
-      {moviesList.length > 0 && (
+      {moviesList.length > 0 && page && (
         <Pagination
           activePage={page}
           itemsCountPerPage={resultsPerPage}

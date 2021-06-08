@@ -11,7 +11,7 @@ export default function MovieSearch() {
   const dispatch = useDispatch();
   const moviesList = useSelector(moviesSelectors.getMoviesList);
   const location = useLocation();
-  const { state, search } = location;
+  const { search } = location;
   const { push } = useHistory();
 
   //из адресной строки браузера выделяем сам запрос, что бы при обновлении страницы он был как запрос.
@@ -23,7 +23,6 @@ export default function MovieSearch() {
 
   //если вернулись не с 1 страницы списка фильмов, то рендерим ее , если да, то рендерим 1
   const [page, setPage] = useState(location.page || 1);
-  console.log(location);
 
   //при маунте убираем список популярных фильмов, что бы лист был пустой
   useEffect(() => {
