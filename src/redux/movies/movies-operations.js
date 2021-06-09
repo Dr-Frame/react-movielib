@@ -15,6 +15,7 @@ const clearMovieList = () => (dispatch) => {
   dispatch(movieActions.clearMovieList());
 };
 
+//фильмы по запросу
 const fetchSearchMovies =
   (query, page = 1) =>
   async (dispatch) => {
@@ -34,6 +35,7 @@ const fetchSearchMovies =
     }
   };
 
+// популярные фильмы
 const fetchPopularMovies =
   (page = 1) =>
   async (dispatch) => {
@@ -53,6 +55,7 @@ const fetchPopularMovies =
     }
   };
 
+//детали фильма
 const fetchMovieDetails = (movieId) => async (dispatch) => {
   const link = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}&language=en-US`;
 
@@ -68,6 +71,7 @@ const fetchMovieDetails = (movieId) => async (dispatch) => {
   }
 };
 
+//команда/актеры фильма
 const fetchMovieCredits = (movieId) => async (dispatch) => {
   const link = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${key}&language=en-US`;
 
@@ -84,6 +88,7 @@ const fetchMovieCredits = (movieId) => async (dispatch) => {
   }
 };
 
+//отзывы о фильме
 const fetchMovieReviews =
   (movieId, page = 1) =>
   async (dispatch) => {
@@ -101,6 +106,7 @@ const fetchMovieReviews =
     }
   };
 
+//идентичные фильмы
 const fetchSimilarMovies =
   (movieId, page = 1) =>
   async (dispatch) => {
@@ -118,6 +124,7 @@ const fetchSimilarMovies =
     }
   };
 
+//фильмы рекомендации
 const fetchMovieRecomendations =
   (movieId, page = 1) =>
   async (dispatch) => {
@@ -136,6 +143,7 @@ const fetchMovieRecomendations =
     }
   };
 
+//картинки с фильма
 const fetchMovieImages = (movieId) => async (dispatch) => {
   const link = `https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${key}&language=en-US`;
 
@@ -150,13 +158,56 @@ const fetchMovieImages = (movieId) => async (dispatch) => {
   }
 };
 
-/* //для работы с массивами из локалстораджа
-const addToFavourite = (movie) => (dispatch) => {
-  dispatch(movieActions.addToFavourite(movie));
+//данные о человеке
+const fetchPersonDetails = (personID) => async (dispatch) => {
+  const link = `https://api.themoviedb.org/3/person/${personID}?api_key=${key}&language=en-US`;
+
+  dispatch(movieActions.fetchPersonDetailsRequest());
+
+  try {
+    await axios
+      .get(link)
+      .then(({ data }) =>
+        dispatch(movieActions.fetchPersonDetailsSuccess(data))
+      );
+  } catch (error) {
+    dispatch(movieActions.fetchPersonDetailsError(error));
+  }
 };
-const deleteFromFavourite = (movieId) => (dispatch) => {
-  dispatch(movieActions.deleteFromFavourite(movieId));
-}; */
+
+const fetchPersonParticipation = (personID) => async (dispatch) => {
+  const link = `https://api.themoviedb.org/3/person/${personID}/movie_credits?api_key=${key}&language=en-US`;
+
+  dispatch(movieActions.fetchPersonParticipationRequest());
+
+  try {
+    await axios
+      .get(link)
+      .then(({ data }) =>
+        dispatch(movieActions.fetchPersonParticipationSuccess(data.cast))
+      );
+  } catch (error) {
+    dispatch(movieActions.fetchPersonParticipationError(error));
+  }
+};
+
+const fetchTopRatedMOvies =
+  (page = 1) =>
+  async (dispatch) => {
+    const link = `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=${page}`;
+    dispatch(movieActions.fetchTopRatedMoviesRequest());
+
+    try {
+      await axios.get(link).then(({ data }) => {
+        console.log(data);
+        dispatch(movieActions.fetchTopRatedMoviesSuccess(data.results));
+        dispatch(movieActions.fetchTotalResults(data.total_results));
+        dispatch(movieActions.fetchTotalPages(data.total_pages));
+      });
+    } catch (error) {
+      dispatch(movieActions.fetchTopRatedMoviesError(error));
+    }
+  };
 
 export default {
   clearQuery,
@@ -170,6 +221,7 @@ export default {
   fetchSimilarMovies,
   fetchMovieRecomendations,
   fetchMovieImages,
+  fetchPersonDetails,
+  fetchPersonParticipation,
+  fetchTopRatedMOvies,
 };
-
-//https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US

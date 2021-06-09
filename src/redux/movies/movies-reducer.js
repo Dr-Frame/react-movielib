@@ -8,6 +8,9 @@ const query = createReducer("", {
 });
 
 //Массивы данных (фильмы, обзоры и т.д)
+const topRatedMovies = createReducer([], {
+  [movieActions.fetchTopRatedMoviesSuccess]: (_, { payload }) => payload,
+});
 const moviesList = createReducer([], {
   [movieActions.searchMovieSuccess]: (_, { payload }) => payload,
   [movieActions.fetchPopularMovieSuccess]: (_, { payload }) => payload,
@@ -33,6 +36,17 @@ const movieRecomendations = createReducer([], {
 });
 const movieImages = createReducer([], {
   [movieActions.fetchMovieImagesSuccess]: (_, { payload }) => payload,
+});
+
+const moviePersonDetails = createReducer(
+  {},
+  {
+    [movieActions.fetchPersonDetailsSuccess]: (_, { payload }) => payload,
+  }
+);
+
+const personParticipation = createReducer([], {
+  [movieActions.fetchPersonParticipationSuccess]: (_, { payload }) => payload,
 });
 
 //Количество результатов каких либо запросов
@@ -94,6 +108,15 @@ const isLoading = createReducer(false, {
   [movieActions.fetchMovieImagesRequest]: () => true,
   [movieActions.fetchMovieImagesSuccess]: () => false,
   [movieActions.fetchMovieImagesError]: () => false,
+  [movieActions.fetchPersonDetailsRequest]: () => true,
+  [movieActions.fetchPersonDetailsSuccess]: () => false,
+  [movieActions.fetchPersonDetailsError]: () => false,
+  [movieActions.fetchPersonParticipationRequest]: () => true,
+  [movieActions.fetchPersonParticipationSuccess]: () => false,
+  [movieActions.fetchPersonParticipationError]: () => false,
+  [movieActions.fetchTopRatedMoviesRequest]: () => true,
+  [movieActions.fetchTopRatedMoviesSuccess]: () => false,
+  [movieActions.fetchTopRatedMoviesError]: () => false,
 });
 
 export default combineReducers({
@@ -113,4 +136,7 @@ export default combineReducers({
   favouriteMovies,
   watchedMovies,
   moviesInQueue,
+  moviePersonDetails,
+  personParticipation,
+  topRatedMovies,
 });

@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 export default function Cast() {
   const dispatch = useDispatch();
   const location = useLocation();
+  const { state } = location;
   const match = useRouteMatch();
   const { params } = match;
   console.log("match", match);
@@ -31,7 +32,12 @@ export default function Cast() {
                 //TODO: сделать страницу актера
 
                 <li key={id} className="Cast__item">
-                  <NavLink to={`people/${id}`}>
+                  <NavLink
+                    to={{
+                      pathname: `/people/${id}`,
+                      state,
+                    }}
+                  >
                     {profile_path && (
                       <img
                         className="Cast__img"

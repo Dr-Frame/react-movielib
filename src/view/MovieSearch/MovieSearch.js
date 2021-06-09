@@ -27,7 +27,7 @@ export default function MovieSearch() {
   //при маунте убираем список популярных фильмов, что бы лист был пустой
   useEffect(() => {
     dispatch(moviesOperations.clearMovieList());
-  }, []);
+  }, [dispatch]);
 
   //если слова запроса нету - не рендерим, если есть запрос и рендер списка
   useEffect(() => {
@@ -57,6 +57,7 @@ export default function MovieSearch() {
       return;
     }
     dispatch(moviesOperations.fetchSearchMovies(query));
+    location.search = search;
   };
 
   const totalResults = useSelector(moviesSelectors.getTotalResults);

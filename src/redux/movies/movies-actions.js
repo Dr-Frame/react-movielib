@@ -71,6 +71,37 @@ const fetchMovieImagesRequest = createAction("movies/fetchMovieImagesRequest");
 const fetchMovieImagesSuccess = createAction("movies/fetchMovieImagesSuccess");
 const fetchMovieImagesError = createAction("movies/fetchMovieImagesError");
 
+//данные о персоне
+const fetchPersonDetailsRequest = createAction(
+  "movies/fetchPersonDetailsRequest"
+);
+const fetchPersonDetailsSuccess = createAction(
+  "movies/fetchPersonDetailsSuccess"
+);
+const fetchPersonDetailsError = createAction("movies/fetchPersonDetailsError");
+
+//данные об участии человека в фильме команде
+const fetchPersonParticipationRequest = createAction(
+  "movies/fetchPersonParticipationRequest"
+);
+const fetchPersonParticipationSuccess = createAction(
+  "movies/fetchPersonParticipationSuccess"
+);
+const fetchPersonParticipationError = createAction(
+  "movies/fetchPersonParticipationError"
+);
+
+//топ фильмы
+const fetchTopRatedMoviesRequest = createAction(
+  "movies/fetchTopRatedMoviesRequest"
+);
+const fetchTopRatedMoviesSuccess = createAction(
+  "movies/fetchTopRatedMoviesSuccess"
+);
+const fetchTopRatedMoviesError = createAction(
+  "movies/fetchTopRatedMoviesError"
+);
+
 //local storage actions
 const addToFavourite = createAction("movies/addToFavourite", (movie) => ({
   payload: movie,
@@ -127,4 +158,13 @@ export default {
   deleteFromFavourite,
   deleteFromWatched,
   deleteFromQueue,
+  fetchPersonDetailsRequest,
+  fetchPersonDetailsSuccess,
+  fetchPersonDetailsError,
+  fetchPersonParticipationRequest,
+  fetchPersonParticipationSuccess,
+  fetchPersonParticipationError,
+  fetchTopRatedMoviesRequest,
+  fetchTopRatedMoviesSuccess,
+  fetchTopRatedMoviesError,
 };

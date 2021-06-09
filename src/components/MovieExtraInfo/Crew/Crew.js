@@ -1,14 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouteMatch } from "react-router";
+import { Route, Switch, useLocation, useRouteMatch } from "react-router";
 import "./Crew.scss";
 import moviesOperations from "../../../redux/movies/movies-operations";
 import moviesSelectors from "../../../redux/movies/movies-selectors";
 import { NavLink } from "react-router-dom";
+import PersonDetails from "../../PersonDetails";
 
 export default function Crew() {
   const dispatch = useDispatch();
   const { params } = useRouteMatch();
+  const location = useLocation();
+  const { state } = location;
+  console.log(location);
 
   useEffect(
     () => dispatch(moviesOperations.fetchMovieCredits(params.id)),
@@ -25,7 +29,12 @@ export default function Crew() {
           {crew &&
             crew.map(({ id, department, job, name, profile_path }) => (
               <li key={id}>
-                <NavLink to={`people/${id}`}>
+                <NavLink
+                  to={{
+                    pathname: `/people/${id}`,
+                    state,
+                  }}
+                >
                   {profile_path && (
                     <img
                       className="Crew__img"
@@ -46,6 +55,7 @@ export default function Crew() {
               </li>
             ))}
         </ul>
+        <Switch></Switch>
       </div>
     </section>
   );

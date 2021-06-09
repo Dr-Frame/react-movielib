@@ -20,7 +20,6 @@ import Recomendations from "../MovieExtraInfo/Recomendations";
 import moviesOperations from "../../redux/movies/movies-operations";
 import moviesSelectors from "../../redux/movies/movies-selectors";
 import movieActions from "../../redux/movies/movies-actions";
-import MoviePageBtn from "../MoviePageBtn/MoviePageBtn";
 
 export default function MovieDetailsPage() {
   const dispatch = useDispatch();
@@ -37,7 +36,7 @@ export default function MovieDetailsPage() {
   }, [dispatch, params.id]);
 
   //если есть слово запрос, значит пришли со страницы поиска (пушим строку поиска что бы отобразился запрос который был), если нету то с главной
-  const handleGoBack = () => {
+  /* const handleGoBack = () => {
     //проверка state на null or undefined
     //для посика фильмов с запросом
     if (state?.query) {
@@ -61,6 +60,14 @@ export default function MovieDetailsPage() {
         pathname: "/",
       });
     }
+  }; */
+
+  const handleGoBack = () => {
+    if (location.state && location.state.from) {
+      return history.push(location.state.from);
+    }
+
+    history.push("/");
   };
 
   //данные для страницы фильма
@@ -299,7 +306,7 @@ export default function MovieDetailsPage() {
                   <NavLink
                     to={{
                       pathname: `${match.url}/cast`,
-                      state: state,
+                      state,
                     }}
                   >
                     Cast
@@ -361,15 +368,22 @@ export default function MovieDetailsPage() {
         </div>
       </div>
       <Switch>
-        <Route path={`${match.path}/cast`} component={Cast}></Route>
-        <Route path={`${match.path}/reviews`} component={Reviews}></Route>
-        <Route path={`${match.path}/images`} component={MovieImages}></Route>
+        <Route path={`${match.path}/cast`}>
+          <Cast />
+        </Route>
+        <Route path={`${match.path}/reviews`}>
+          <Reviews />
+        </Route>
+        <Route path={`${match.path}/images`}>
+          <MovieImages />
+        </Route>
         {/* <Route path={`${match.path}/similar`} component={SimilarMovies}></Route> */}
-        <Route path={`${match.path}/crew`} component={Crew}></Route>
-        <Route
-          path={`${match.path}/recomendations`}
-          component={Recomendations}
-        ></Route>
+        <Route path={`${match.path}/crew`}>
+          <Crew />
+        </Route>
+        <Route path={`${match.path}/recomendations`}>
+          <Recomendations />
+        </Route>
       </Switch>
     </section>
   );

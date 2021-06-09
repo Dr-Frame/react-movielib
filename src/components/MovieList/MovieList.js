@@ -31,8 +31,7 @@ export default function MovieList({
                     to={{
                       pathname: `movies/${id}`,
                       state: {
-                        query,
-                        page,
+                        from: { ...location, page },
                       },
                     }}
                   >
