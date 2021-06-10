@@ -7,6 +7,12 @@ const query = createReducer("", {
   [movieActions.clearQuery]: () => "",
 });
 
+//отвечает за открытие/закрытие меню мобилка
+const isMenuOpened = createReducer(false, {
+  [movieActions.closeMenu]: () => false,
+  [movieActions.openMenu]: () => true,
+});
+
 //Массивы данных (фильмы, обзоры и т.д)
 const topRatedMovies = createReducer([], {
   [movieActions.fetchTopRatedMoviesSuccess]: (_, { payload }) => payload,
@@ -139,4 +145,5 @@ export default combineReducers({
   moviePersonDetails,
   personParticipation,
   topRatedMovies,
+  isMenuOpened,
 });

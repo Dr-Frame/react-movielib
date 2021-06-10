@@ -119,6 +119,8 @@ const deleteFromQueue = createAction("movies/deleteFromQueue");
 const changeQuery = createAction("movies/changeQuery");
 const clearQuery = createAction("movies/clearQuery");
 const clearMovieList = createAction("movies/clearMovieList");
+const closeMenu = createAction("movies/closeMenu");
+const openMenu = createAction("movies/openMenu");
 
 export default {
   clearQuery,
@@ -167,4 +169,6 @@ export default {
   fetchTopRatedMoviesRequest,
   fetchTopRatedMoviesSuccess,
   fetchTopRatedMoviesError,
+  closeMenu,
+  openMenu,
 };

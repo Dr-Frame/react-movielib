@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moviesSelectors from "../../redux/movies/movies-selectors";
 import moviesOperations from "../../redux/movies/movies-operations";
 import { useLocation } from "react-router";
 import MovieList from "../MovieList/MovieList";
+import moviesActions from "../../redux/movies/movies-actions";
 
 export default function Favorite() {
   const location = useLocation();
@@ -11,6 +12,9 @@ export default function Favorite() {
 
   const dispatch = useDispatch();
   const favorited = useSelector(moviesSelectors.getFavorited);
+
+  //для закрытие меню мобильного при открытии
+  useEffect(() => dispatch(moviesActions.closeMenu()), []);
 
   //для пагинации функция
   const handlePageChange = (pageNumber) => {

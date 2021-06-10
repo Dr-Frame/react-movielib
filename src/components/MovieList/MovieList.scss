@@ -1,0 +1,93 @@
+@import "../../styles/parshals.scss";
+
+.MovieList__wrapper {
+  margin-top: 100px;
+}
+
+.testdiv {
+  display: flex;
+  /* @include for-size(mobile-only) {
+    display: none;
+  } */
+}
+
+.test {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+
+.test1 {
+  background-color: $main-bgc-color;
+}
+.test2 {
+  background-color: $second-bgc-color;
+}
+.test3 {
+  background-color: $third-bgc-color;
+}
+.test4 {
+  background-color: $light-bgc-color;
+}
+.test5 {
+  background-color: $main-text-color;
+}
+.test6 {
+  background-color: $main-element-color;
+}
+.test7 {
+  background-color: $secondary-element-color;
+}
+.test8 {
+  background-color: $third-element-color;
+}
+.test9 {
+  background-color: $light-element-color;
+}
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.MovieList__flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 450px;
+
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.MovieList__flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.MovieList__flip-card:hover .MovieList__flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.MovieList__flip-card-front,
+.MovieList__flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.MovieList__flip-card-front {
+  background-color: rgb(153, 0, 0);
+  color: black;
+}
+
+/* Style the back side */
+.MovieList__flip-card-back {
+  background-color: $main-element-color;
+  color: white;
+  transform: rotateY(180deg);
+}

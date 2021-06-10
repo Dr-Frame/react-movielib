@@ -1,12 +1,17 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import moviesSelectors from "../../redux/movies/movies-selectors";
 import { useLocation } from "react-router";
 import MovieList from "../MovieList/MovieList";
+import moviesActions from "../../redux/movies/movies-actions";
 
 export default function Favorite() {
+  const dispatch = useDispatch();
   const location = useLocation();
   const [page, setPage] = useState(location.page || 1);
+
+  //для закрытие меню мобильного при открытии
+  useEffect(() => dispatch(moviesActions.closeMenu()), []);
 
   const queue = useSelector(moviesSelectors.getInQueue);
 

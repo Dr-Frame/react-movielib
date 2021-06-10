@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Homeview.scss";
 import moviesSelectors from "../../redux/movies/movies-selectors";
 import moviesOperations from "../../redux/movies/movies-operations";
+import moviesActions from "../../redux/movies/movies-actions";
 import MovieList from "../../components/MovieList";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -21,6 +22,9 @@ export default function Homeview() {
   const totalResults = useSelector(moviesSelectors.getTotalResults);
   const [page, setPage] = useState(location?.page || 1);
 
+  //для закрытие меню мобильного при открытии
+  useEffect(() => dispatch(moviesActions.closeMenu()), []);
+
   //для пагинации
   const handlePageChange = (pageNumber) => {
     setPage(pageNumber);
@@ -32,7 +36,7 @@ export default function Homeview() {
   }, [dispatch, page]);
 
   return (
-    <main>
+    <main className="HomeView">
       <section>
         <div className="container">
           <MovieList

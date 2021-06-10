@@ -9,6 +9,7 @@ import Watched from "./components/Watched";
 import Queue from "./components/Queue";
 import PersonDetails from "./components/PersonDetails";
 import TopRatedView from "./view/TopRatedView";
+import ScrollArrow from "./components/ScrollArrow";
 
 import { Route, Switch } from "react-router-dom";
 import Page404 from "./view/Page404/Page404";
@@ -54,6 +55,7 @@ function App() {
           <Page404 />
         </Route>
       </Switch>
+      <ScrollArrow />
     </>
   );
 }

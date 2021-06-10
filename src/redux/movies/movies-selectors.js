@@ -19,6 +19,7 @@ const getInQueue = (state) => state.movies.moviesInQueue;
 const getPersonDetails = (state) => state.movies.moviePersonDetails;
 const getPersonParticipation = (state) => state.movies.personParticipation;
 const getTopRatedMovies = (state) => state.movies.topRatedMovies;
+const getIsMenuOpened = (state) => state.movies.isMenuOpened;
 
 export default {
   getQuery,
@@ -41,4 +42,5 @@ export default {
   getPersonDetails,
   getPersonParticipation,
   getTopRatedMovies,
+  getIsMenuOpened,
 };

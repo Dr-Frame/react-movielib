@@ -139,25 +139,6 @@ export default function MovieDetailsPage() {
     [inQueue, currentMovie.id, moviePresenseInArrayCheck]
   );
 
-  /*  useEffect(() => {
-    for (const movie of favorited) {
-      if (movie.id === currentMovie.id) {
-        setIsMovieIncludedInFavourites(true);
-        console.log("фильм совпал, есть в фейворит: ", movie.title);
-        console.log("текущий фильм: ", currentMovie.title);
-        console.log(favorited);
-        console.log("внутри цикла", isMovieIncludedInFavourites);
-        return;
-      } else if (movie.id !== currentMovie.id) {
-        setIsMovieIncludedInFavourites(false);
-        console.log(
-          "внутри цикла- не в списке феворит",
-          isMovieIncludedInFavourites
-        );
-      }
-    }
-  }, [favorited, currentMovie]); */
-
   return (
     <section>
       <div className="container">
@@ -275,7 +256,7 @@ export default function MovieDetailsPage() {
             )}
 
             <p>Countries: </p>
-            {/* {production_countries?.length === 0 && (
+            {production_countries?.length === 0 && (
               <p>{production_countries.name}</p>
             )}
             {production_countries?.length > 0 && (
@@ -284,19 +265,19 @@ export default function MovieDetailsPage() {
                   return <li key={name}>{name}</li>;
                 })}
               </ul>
-            )} */}
+            )}
 
             <p>Production companies: </p>
-            {/* {production_companies.length === 0 && (
+            {production_companies?.length === 0 && (
               <p>{production_companies.name}</p>
             )}
-            {production_companies.length > 0 && (
+            {production_companies?.length > 0 && (
               <ul>
                 {production_companies.map(({ name }) => {
                   return <li key={name}>{name}</li>;
                 })}
               </ul>
-            )} */}
+            )}
             <h3 className="MovieDetailsPage__title">Overview</h3>
             <p className="MovieDetailsPage__descr">{overview}</p>
 

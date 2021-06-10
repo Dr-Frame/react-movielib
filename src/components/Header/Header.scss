@@ -1,0 +1,8 @@
+@import "../../styles/parshals.scss";
+.Header {
+  width: 100%;
+  position: fixed;
+  height: 80px;
+  z-index: 1;
+  background-color: $main-bgc-color;
+}

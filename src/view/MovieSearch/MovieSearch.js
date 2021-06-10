@@ -3,6 +3,7 @@ import "./MovieSearch.scss";
 import { useSelector, useDispatch } from "react-redux";
 import moviesOperations from "../../redux/movies/movies-operations";
 import moviesSelectors from "../../redux/movies/movies-selectors";
+import moviesActions from "../../redux/movies/movies-actions";
 import MovieList from "../../components/MovieList";
 import { useLocation, useHistory } from "react-router";
 import queryString from "query-string";
@@ -13,6 +14,9 @@ export default function MovieSearch() {
   const location = useLocation();
   const { search } = location;
   const { push } = useHistory();
+
+  //для закрытие меню мобильного при открытии
+  useEffect(() => dispatch(moviesActions.closeMenu()), []);
 
   //из адресной строки браузера выделяем сам запрос, что бы при обновлении страницы он был как запрос.
   const initialQueryState = queryString.parse(search);
