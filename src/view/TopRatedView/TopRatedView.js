@@ -25,20 +25,22 @@ export default function Homeview() {
   //при маунте и смене страниц рендерим популярніе фильмы
   useEffect(() => {
     dispatch(moviesOperations.fetchTopRatedMOvies(page));
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, [dispatch, page]);
 
   return (
-    <main>
-      <section>
-        <div className="container">
-          <MovieList
-            moviesList={topMovieList}
-            page={page}
-            handlePageChange={handlePageChange}
-            totalResults={totalResults}
-          />
-        </div>
-      </section>
-    </main>
+    <section>
+      <div className="container">
+        <MovieList
+          moviesList={topMovieList}
+          page={page}
+          handlePageChange={handlePageChange}
+          totalResults={totalResults}
+        />
+      </div>
+    </section>
   );
 }

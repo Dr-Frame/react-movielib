@@ -1,0 +1,38 @@
+@import "./variables";
+@import "./colors";
+@import "./mixins";
+
+%card-span {
+  display: inline-block;
+
+  margin-right: 5px;
+  padding: 3px;
+  border-radius: 3px;
+
+  background-color: $main-element-color;
+  color: $light-element-color;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+%mobile-mt {
+  margin-top: 80px;
+}
+
+%buttons {
+  width: 100px;
+  height: 35px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: $main-element-color;
+  color: $light-bgc-color;
+  transition: $transition;
+  margin-bottom: 20px;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

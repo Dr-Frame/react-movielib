@@ -7,6 +7,7 @@ import moviesActions from "../../redux/movies/movies-actions";
 import MovieList from "../../components/MovieList";
 import { useLocation, useHistory } from "react-router";
 import queryString from "query-string";
+import Fallback from "../../components/Fallback";
 
 export default function MovieSearch() {
   const dispatch = useDispatch();
@@ -39,6 +40,10 @@ export default function MovieSearch() {
       return;
     }
     dispatch(moviesOperations.fetchSearchMovies(query, page));
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, [dispatch, page]);
 
   //смотрим что бы в адресной строке был запрос
@@ -65,27 +70,40 @@ export default function MovieSearch() {
   };
 
   const totalResults = useSelector(moviesSelectors.getTotalResults);
-
+  const isLoading = useSelector(moviesSelectors.getLoading);
   //для пагинации функция
   const handlePageChange = (pageNumber) => {
     setPage(pageNumber);
   };
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <input value={query} onChange={changeQuery} />
-        </label>
-        <button type="submit">Search</button>
-      </form>
-      <MovieList
-        moviesList={moviesList}
-        query={query}
-        page={page}
-        handlePageChange={handlePageChange}
-        totalResults={totalResults}
-      />
+    <section className="MovieSearch__section">
+      <div className="container">
+        <form className="MovieSearch__form" onSubmit={handleSubmit}>
+          <label className="MovieSearch__label">
+            <input
+              placeholder="..."
+              className="MovieSearch__input"
+              value={query}
+              onChange={changeQuery}
+            />
+          </label>
+          <button className="MovieSearch__btn" type="submit">
+            Search
+          </button>
+        </form>
+        {isLoading ? (
+          <Fallback />
+        ) : (
+          <MovieList
+            moviesList={moviesList}
+            query={query}
+            page={page}
+            handlePageChange={handlePageChange}
+            totalResults={totalResults}
+          />
+        )}
+      </div>
     </section>
   );
 }

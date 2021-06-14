@@ -1,125 +1,68 @@
 @import "../../styles/parshals.scss";
 
-.Navigation {
+.Navigation__mob {
+  display: flex;
+  align-items: center;
 }
 
-.container {
-  position: relative;
-}
-.Navigation__mobile {
+.Navigation__logo {
   display: flex;
-  justify-content: flex-end;
-  @include for-size(tablet) {
-    display: none;
+  align-items: center;
+  margin-right: 132px;
+  font-size: 20px;
+  font-weight: 700;
+  color: $main-text-color;
+  transition: $transition;
+  /* color: $main-element-color; */
+
+  &:hover {
+    color: $main-element-color;
   }
 }
 
-.Navigation__btn {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  border: none;
-  background-color: transparent;
+.Navigation__logo--icon {
+  margin-right: 5px;
   font-size: 40px;
+  color: $main-element-color;
+}
+
+.Navigation__btn {
+  height: 37px;
+  top: 20px;
+  right: 20px;
+  padding: 0;
+  border: none;
+
+  background-color: transparent;
+  font-size: 37px;
   color: $main-element-color;
   cursor: pointer;
 }
 
-.Navigation__mobile-menu {
-  transform: translateX(+100%);
-  opacity: 0;
-}
-
-.Navigation__mobile-menu--open {
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translateX(0);
-  opacity: 1;
-  width: 70%;
-
-  background-color: $light-bgc-color;
-  transition: $transition;
-}
-
-.Navigation__list {
-  width: 100%;
-  margin-top: 80px;
-  display: flex;
-  flex-direction: column;
-}
-.Navigation__item {
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  border-bottom: 1px solid $second-bgc-color;
-  color: #871027;
-  transition: $transition;
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: 700;
-
-  &:hover {
-    background-color: $second-bgc-color;
+.Navigation__menu-item {
+  &:active {
+    background-color: transparent;
   }
 }
 
-.Navigation__desktop {
-  display: none;
-
-  @include for-size(tablet) {
-    display: block;
-  }
-}
-
-/* Style The Dropdown Button */
-.dropbtn {
-  background-color: #871027;
-  color: white;
-  padding: 16px;
+.Navigation__link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
   font-size: 16px;
-  border: none;
-  cursor: pointer;
+  color: $third-bgc-color;
+  font-weight: 500;
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
+.Navigation__link_active {
+  color: $main-element-color;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  transition: 1000ms cubic-bezier(0.075, 0.82, 0.165, 1);
+.Navigation__icon {
+  margin-right: 5px;
+  color: $main-element-color;
+  font-size: 30px;
 }
 
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  transition: 1000ms cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #bc454f;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-  background-color: #871027;
-}
+/* style={{ color: `#871027`, fontSize: 36 }} */

@@ -1,15 +1,17 @@
+@import "../../styles/parshals.scss";
+
 .scrollTop {
   position: fixed;
-  bottom: 20px;
+  bottom: 80px;
   right: 20px;
   z-index: 1000;
   cursor: pointer;
   animation: fadeIn 0.5s;
   transition: opacity 0.4s;
-  opacity: 0.5;
-  color: rgb(163, 2, 77);
+  opacity: 1;
+  color: $main-element-color;
 
-  font-size: 40px;
+  font-size: 50px;
 }
 
 .scrollTop:hover {
@@ -21,6 +23,6 @@
     opacity: 0;
   }
   100% {
-    opacity: 0.5;
+    opacity: 1;
   }
 }

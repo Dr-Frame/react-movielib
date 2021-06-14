@@ -12,6 +12,7 @@ import {
   useParams,
   useRouteMatch,
 } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function Homeview() {
   const location = useLocation();
@@ -33,20 +34,28 @@ export default function Homeview() {
   //при маунте и смене страниц рендерим популярніе фильмы
   useEffect(() => {
     dispatch(moviesOperations.fetchPopularMovies(page));
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, [dispatch, page]);
 
   return (
-    <main className="HomeView">
-      <section>
-        <div className="container">
-          <MovieList
-            moviesList={moviesList}
-            page={page}
-            handlePageChange={handlePageChange}
-            totalResults={totalResults}
-          />
-        </div>
-      </section>
-    </main>
+    <motion.section
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="HomeView"
+    >
+      <div className="container">
+        <MovieList
+          moviesList={moviesList}
+          page={page}
+          handlePageChange={handlePageChange}
+          totalResults={totalResults}
+        />
+      </div>
+    </motion.section>
   );
 }

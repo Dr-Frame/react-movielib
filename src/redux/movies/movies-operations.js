@@ -45,7 +45,6 @@ const fetchPopularMovies =
 
     try {
       await axios.get(link).then(({ data }) => {
-        console.log(data);
         dispatch(movieActions.fetchPopularMovieSuccess(data.results));
         dispatch(movieActions.fetchTotalResults(data.total_results));
         dispatch(movieActions.fetchTotalPages(data.total_pages));

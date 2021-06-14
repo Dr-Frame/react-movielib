@@ -1,57 +1,81 @@
 @import "../../styles/parshals.scss";
 
-.MovieList__wrapper {
-  margin-top: 100px;
-}
-
-.testdiv {
+.MovieList {
   display: flex;
-  /* @include for-size(mobile-only) {
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.MovieList__img {
+  border-radius: 3px;
+}
+
+.MovieList__title {
+  max-height: 80px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.MovieList__in-list--added {
+  color: $main-element-color;
+}
+
+.MovieList__lists {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.MovieList__descr {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.MovieList__descr span {
+  @extend %card-span;
+}
+
+.MovieList__genre {
+  @extend %card-span;
+}
+
+.MovieList__genres-list {
+  font-size: 14px;
+}
+
+.MovieList__release {
+  @include for-size(mobile) {
     display: none;
-  } */
-}
+  }
+  @include for-size(tablet) {
+    display: inline-block;
 
-.test {
-  width: 40px;
-  height: 40px;
-  margin-right: 5px;
-}
+    margin-right: 5px;
+    padding: 3px;
+    border-radius: 3px;
 
-.test1 {
-  background-color: $main-bgc-color;
-}
-.test2 {
-  background-color: $second-bgc-color;
-}
-.test3 {
-  background-color: $third-bgc-color;
-}
-.test4 {
-  background-color: $light-bgc-color;
-}
-.test5 {
-  background-color: $main-text-color;
-}
-.test6 {
-  background-color: $main-element-color;
-}
-.test7 {
-  background-color: $secondary-element-color;
-}
-.test8 {
-  background-color: $third-element-color;
-}
-.test9 {
-  background-color: $light-element-color;
+    background-color: $main-element-color;
+    color: $light-element-color;
+    font-size: 14px;
+    font-weight: 500;
+  }
 }
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .MovieList__flip-card {
   background-color: transparent;
-  width: 300px;
-  height: 450px;
+  width: calc((100% - 10px) / 2);
+  height: 217.5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
 
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
+
+  &:nth-child(2n) {
+    margin-right: 0;
+  }
 }
 
 /* This container is needed to position the front and back side */
@@ -59,7 +83,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  text-align: center;
+
   transition: transform 0.5s;
   transform-style: preserve-3d;
 }
@@ -72,6 +96,7 @@
 /* Position the front and back side */
 .MovieList__flip-card-front,
 .MovieList__flip-card-back {
+  border-radius: 3px;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -81,13 +106,59 @@
 
 /* Style the front side (fallback if image is missing) */
 .MovieList__flip-card-front {
-  background-color: rgb(153, 0, 0);
+  background-color: $main-bgc-color;
   color: black;
 }
 
 /* Style the back side */
 .MovieList__flip-card-back {
-  background-color: $main-element-color;
-  color: white;
+  padding: 10px;
+  background-color: $light-bgc-color;
+  color: $third-bgc-color;
   transform: rotateY(180deg);
+}
+
+.pagination {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $main-element-color;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.pagination__not-active-li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  height: 40px;
+  width: 40px;
+  border: 1px solid $main-element-color;
+  margin-right: 5px;
+  border-radius: 3px;
+  background-color: $main-element-color;
+  color: $main-text-color;
+  font-weight: 700;
+  transition: $transition;
+  cursor: pointer;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    font-size: 18px;
+  }
+}
+
+.pagination__active-li {
+  border: 2px solid $main-element-color;
+  background-color: transparent;
+  color: $main-element-color;
+  font-size: 20px;
+  padding-bottom: 6px;
 }

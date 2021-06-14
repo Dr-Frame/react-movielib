@@ -23,17 +23,15 @@ export default function Favorite() {
 
   console.log(favorited);
   return (
-    <main>
-      <section>
-        <div className="container">
-          <MovieList
-            moviesList={favorited}
-            page={page}
-            handlePageChange={handlePageChange}
-            totalResults={favorited.length}
-          />
-        </div>
-      </section>
-    </main>
+    <section>
+      <div className="container">
+        <MovieList
+          moviesList={favorited}
+          page={page}
+          handlePageChange={handlePageChange}
+          totalResults={favorited.length}
+        />
+      </div>
+    </section>
   );
 }

@@ -5,6 +5,16 @@ body {
   padding: 0;
   margin: 0;
   list-style: none;
+  background-color: $second-bgc-color;
+}
+
+section {
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  margin-top: 80px;
 }
 
 #root {
@@ -66,4 +76,22 @@ ul {
     padding-left: 115px;
     padding-right: 115px;
   }
+}
+
+.rc-menu--open.Navigation__menu {
+  top: 35px;
+}
+.rc-menu__divider {
+  background-color: $third-element-color;
+  opacity: 0.5;
+}
+.rc-menu__header {
+  color: $third-element-color;
+  font-weight: 500;
+}
+.rc-menu__item--active {
+  background-color: transparent;
+}
+.rc-menu__item--hover {
+  background-color: transparent;
 }

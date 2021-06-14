@@ -2,7 +2,12 @@
 .Header {
   width: 100%;
   position: fixed;
-  height: 80px;
+  height: 60px;
   z-index: 1;
   background-color: $main-bgc-color;
+  border-bottom: 1px solid #02463b;
+}
+
+.container {
+  position: relative;
 }

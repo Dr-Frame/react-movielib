@@ -20,6 +20,7 @@ import Recomendations from "../MovieExtraInfo/Recomendations";
 import moviesOperations from "../../redux/movies/movies-operations";
 import moviesSelectors from "../../redux/movies/movies-selectors";
 import movieActions from "../../redux/movies/movies-actions";
+import { motion } from "framer-motion";
 
 export default function MovieDetailsPage() {
   const dispatch = useDispatch();
@@ -142,178 +143,187 @@ export default function MovieDetailsPage() {
   return (
     <section>
       <div className="container">
-        <button type="button" onClick={handleGoBack}>
-          Go back
-        </button>
+        <motion.div
+          initial={{ opacity: 0 }}
+          exit={{ opacity: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="MovieDetails__wrapper"
+        >
+          <button type="button" onClick={handleGoBack}>
+            Go back
+          </button>
 
-        <ul className="MovieDetailsPage__btn-pack">
-          {isMovieIncludedInFavourites ? (
-            <li>
-              <button
-                className="MovieDetailsPage__btn-pack__btn"
-                onClick={() => {
-                  dispatch(movieActions.deleteFromFavourite(currentMovie.id));
-                  setIsMovieIncludedInFavourites(false);
-                }}
-              >
-                Delete from favourites
-              </button>
-            </li>
-          ) : (
-            <li>
-              <button
-                className="MovieDetailsPage__btn-pack__btn"
-                onClick={() =>
-                  dispatch(movieActions.addToFavourite(currentMovie))
-                }
-              >
-                Add to favorites
-              </button>
-            </li>
-          )}
-          {isMovieIncludedInWatched ? (
-            <li>
-              <button
-                className="MovieDetailsPage__btn-pack__btn"
-                onClick={() => {
-                  dispatch(movieActions.deleteFromWatched(currentMovie.id));
-                  setIsMovieIncludedInWatched(false);
-                }}
-              >
-                Delete from watched
-              </button>
-            </li>
-          ) : (
-            <li>
-              <button
-                className="MovieDetailsPage__btn-pack__btn"
-                onClick={() =>
-                  dispatch(movieActions.addToWatched(currentMovie))
-                }
-              >
-                Add to watched
-              </button>
-            </li>
-          )}
-          {isMovieIncludedInQueue ? (
-            <li>
-              <button
-                className="MovieDetailsPage__btn-pack__btn"
-                onClick={() => {
-                  dispatch(movieActions.deleteFromQueue(currentMovie.id));
-                  setIsMovieIncludedInQueue(false);
-                }}
-              >
-                Delete from queue
-              </button>
-            </li>
-          ) : (
-            <li>
-              <button
-                className="MovieDetailsPage__btn-pack__btn"
-                onClick={() => dispatch(movieActions.addToQueue(currentMovie))}
-              >
-                Add to queue
-              </button>
-            </li>
-          )}
-        </ul>
+          <ul className="MovieDetailsPage__btn-pack">
+            {isMovieIncludedInFavourites ? (
+              <li>
+                <button
+                  className="MovieDetailsPage__btn-pack__btn"
+                  onClick={() => {
+                    dispatch(movieActions.deleteFromFavourite(currentMovie.id));
+                    setIsMovieIncludedInFavourites(false);
+                  }}
+                >
+                  Delete from favourites
+                </button>
+              </li>
+            ) : (
+              <li>
+                <button
+                  className="MovieDetailsPage__btn-pack__btn"
+                  onClick={() =>
+                    dispatch(movieActions.addToFavourite(currentMovie))
+                  }
+                >
+                  Add to favorites
+                </button>
+              </li>
+            )}
+            {isMovieIncludedInWatched ? (
+              <li>
+                <button
+                  className="MovieDetailsPage__btn-pack__btn"
+                  onClick={() => {
+                    dispatch(movieActions.deleteFromWatched(currentMovie.id));
+                    setIsMovieIncludedInWatched(false);
+                  }}
+                >
+                  Delete from watched
+                </button>
+              </li>
+            ) : (
+              <li>
+                <button
+                  className="MovieDetailsPage__btn-pack__btn"
+                  onClick={() =>
+                    dispatch(movieActions.addToWatched(currentMovie))
+                  }
+                >
+                  Add to watched
+                </button>
+              </li>
+            )}
+            {isMovieIncludedInQueue ? (
+              <li>
+                <button
+                  className="MovieDetailsPage__btn-pack__btn"
+                  onClick={() => {
+                    dispatch(movieActions.deleteFromQueue(currentMovie.id));
+                    setIsMovieIncludedInQueue(false);
+                  }}
+                >
+                  Delete from queue
+                </button>
+              </li>
+            ) : (
+              <li>
+                <button
+                  className="MovieDetailsPage__btn-pack__btn"
+                  onClick={() =>
+                    dispatch(movieActions.addToQueue(currentMovie))
+                  }
+                >
+                  Add to queue
+                </button>
+              </li>
+            )}
+          </ul>
 
-        <div className="MovieDetailsPage__movie-info">
-          <div>
-            {poster_path && (
-              <img
-                className="MovieDetailsPage__poster"
-                src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-                alt="movie-poster"
-                width="200"
-              ></img>
-            )}
-          </div>
-          <div>
-            <h1 className="MovieDetailsPage__top">{title}</h1>
-            <p className="MovieDetailsPage__vote">
-              User rate: <span>{vote_average}</span>
-            </p>
-            <p className="MovieDetailsPage__release">
-              Release date: {release_date}
-            </p>
+          <div className="MovieDetailsPage__movie-info">
+            <div>
+              {poster_path && (
+                <img
+                  className="MovieDetailsPage__poster"
+                  src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                  alt="movie-poster"
+                  width="200"
+                ></img>
+              )}
+            </div>
+            <div>
+              <h1 className="MovieDetailsPage__top">{title}</h1>
+              <p className="MovieDetailsPage__vote">
+                User rate: <span>{vote_average}</span>
+              </p>
+              <p className="MovieDetailsPage__release">
+                Release date: {release_date}
+              </p>
 
-            <p>Budget: {budget}</p>
-            <p>Revenue: {revenue} $</p>
-            <p>Run time: {runtime} min</p>
-            <p className="MovieDetailsPage__title">Genres:</p>
-            {genres && (
-              <ul className="MovieDetailsPage__genres">
-                {genres.map(({ id, name }) => {
-                  return (
-                    <li key={id} className="MovieDetailsPage__genres--item">
-                      {name}
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
+              <p>Budget: {budget}</p>
+              <p>Revenue: {revenue} $</p>
+              <p>Run time: {runtime} min</p>
+              <p className="MovieDetailsPage__title">Genres:</p>
+              {genres && (
+                <ul className="MovieDetailsPage__genres">
+                  {genres.map(({ id, name }) => {
+                    return (
+                      <li key={id} className="MovieDetailsPage__genres--item">
+                        {name}
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
 
-            <p>Countries: </p>
-            {production_countries?.length === 0 && (
-              <p>{production_countries.name}</p>
-            )}
-            {production_countries?.length > 0 && (
-              <ul>
-                {production_countries.map(({ name }) => {
-                  return <li key={name}>{name}</li>;
-                })}
-              </ul>
-            )}
+              <p>Countries: </p>
+              {production_countries?.length === 0 && (
+                <p>{production_countries.name}</p>
+              )}
+              {production_countries?.length > 0 && (
+                <ul>
+                  {production_countries.map(({ name }) => {
+                    return <li key={name}>{name}</li>;
+                  })}
+                </ul>
+              )}
 
-            <p>Production companies: </p>
-            {production_companies?.length === 0 && (
-              <p>{production_companies.name}</p>
-            )}
-            {production_companies?.length > 0 && (
-              <ul>
-                {production_companies.map(({ name }) => {
-                  return <li key={name}>{name}</li>;
-                })}
-              </ul>
-            )}
-            <h3 className="MovieDetailsPage__title">Overview</h3>
-            <p className="MovieDetailsPage__descr">{overview}</p>
+              <p>Production companies: </p>
+              {production_companies?.length === 0 && (
+                <p>{production_companies.name}</p>
+              )}
+              {production_companies?.length > 0 && (
+                <ul>
+                  {production_companies.map(({ name }) => {
+                    return <li key={name}>{name}</li>;
+                  })}
+                </ul>
+              )}
+              <h3 className="MovieDetailsPage__title">Overview</h3>
+              <p className="MovieDetailsPage__descr">{overview}</p>
 
-            <div className="MovieDetailsPage__extra">
-              <ul>
-                <li>
-                  <NavLink
-                    to={{
-                      pathname: `${match.url}/cast`,
-                      state,
-                    }}
-                  >
-                    Cast
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to={{
-                      pathname: `${match.url}/reviews`,
-                      state: state,
-                    }}
-                  >
-                    Reviews
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to={{
-                      pathname: `${match.url}/images`,
-                      state: state,
-                    }}
-                  >
-                    Images
-                  </NavLink>
-                </li>
-                {/* <li>
+              <div className="MovieDetailsPage__extra">
+                <ul>
+                  <li>
+                    <NavLink
+                      to={{
+                        pathname: `${match.url}/cast`,
+                        state,
+                      }}
+                    >
+                      Cast
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to={{
+                        pathname: `${match.url}/reviews`,
+                        state: state,
+                      }}
+                    >
+                      Reviews
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to={{
+                        pathname: `${match.url}/images`,
+                        state: state,
+                      }}
+                    >
+                      Images
+                    </NavLink>
+                  </li>
+                  {/* <li>
                   <NavLink
                     to={{
                       pathname: `${match.url}/similar`,
@@ -323,30 +333,31 @@ export default function MovieDetailsPage() {
                     Similar
                   </NavLink>
                 </li> */}
-                <li>
-                  <NavLink
-                    to={{
-                      pathname: `${match.url}/crew`,
-                      state: state,
-                    }}
-                  >
-                    Crew
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to={{
-                      pathname: `${match.url}/recomendations`,
-                      state: state,
-                    }}
-                  >
-                    Recomendations
-                  </NavLink>
-                </li>
-              </ul>
+                  <li>
+                    <NavLink
+                      to={{
+                        pathname: `${match.url}/crew`,
+                        state: state,
+                      }}
+                    >
+                      Crew
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to={{
+                        pathname: `${match.url}/recomendations`,
+                        state: state,
+                      }}
+                    >
+                      Recomendations
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
       <Switch>
         <Route path={`${match.path}/cast`}>

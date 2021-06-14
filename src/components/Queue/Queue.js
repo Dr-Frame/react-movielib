@@ -21,17 +21,15 @@ export default function Favorite() {
   };
 
   return (
-    <main>
-      <section>
-        <div className="container">
-          <MovieList
-            moviesList={queue}
-            page={page}
-            handlePageChange={handlePageChange}
-            totalResults={queue.length}
-          />
-        </div>
-      </section>
-    </main>
+    <section>
+      <div className="container">
+        <MovieList
+          moviesList={queue}
+          page={page}
+          handlePageChange={handlePageChange}
+          totalResults={queue.length}
+        />
+      </div>
+    </section>
   );
 }
