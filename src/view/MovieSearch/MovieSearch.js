@@ -7,7 +7,7 @@ import moviesActions from "../../redux/movies/movies-actions";
 import MovieList from "../../components/MovieList";
 import { useLocation, useHistory } from "react-router";
 import queryString from "query-string";
-import Fallback from "../../components/Fallback";
+import { motion } from "framer-motion";
 
 export default function MovieSearch() {
   const dispatch = useDispatch();
@@ -79,7 +79,13 @@ export default function MovieSearch() {
   return (
     <section className="MovieSearch__section">
       <div className="container">
-        <form className="MovieSearch__form" onSubmit={handleSubmit}>
+        <motion.form
+          initial={{ opacity: 0, y: -50 }}
+          exit={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="MovieSearch__form"
+          onSubmit={handleSubmit}
+        >
           <label className="MovieSearch__label">
             <input
               placeholder="..."
@@ -91,18 +97,15 @@ export default function MovieSearch() {
           <button className="MovieSearch__btn" type="submit">
             Search
           </button>
-        </form>
-        {isLoading ? (
-          <Fallback />
-        ) : (
-          <MovieList
-            moviesList={moviesList}
-            query={query}
-            page={page}
-            handlePageChange={handlePageChange}
-            totalResults={totalResults}
-          />
-        )}
+        </motion.form>
+
+        <MovieList
+          moviesList={moviesList}
+          query={query}
+          page={page}
+          handlePageChange={handlePageChange}
+          totalResults={totalResults}
+        />
       </div>
     </section>
   );

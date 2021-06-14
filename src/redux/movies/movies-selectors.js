@@ -2,6 +2,7 @@ const getQuery = (state) => state.movies.query;
 const getMoviesList = (state) => state.movies.moviesList;
 const getMovieDetails = (state) => state.movies.movieDetails;
 const getLoading = (state) => state.movies.isLoading;
+const getIsExtraLoading = (state) => state.movies.isExtraLoading;
 const getTotalResults = (state) => state.movies.movieTotalResults;
 const getTotalPages = (state) => state.movies.movieTotalPages;
 const getMovieCast = (state) => state.movies.movieCredits.cast;
@@ -26,6 +27,7 @@ export default {
   getMoviesList,
   getMovieDetails,
   getLoading,
+  getIsExtraLoading,
   getTotalResults,
   getTotalPages,
   getMovieCast,

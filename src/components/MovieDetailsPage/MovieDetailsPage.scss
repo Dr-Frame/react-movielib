@@ -1,1 +1,198 @@
+@import "../../styles/parshals.scss";
 
+.MovieDetailsPage {
+}
+.MovieDetailsPage__go-back-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.MovieDetailsPage__go-back {
+  @extend %go-back-btn;
+}
+
+.MovieDetailsPage__btn-pack {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+//контейнер подскахки
+.MovieDetailsPage__btn-pack__list {
+  position: relative;
+  margin-right: 20px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+//подсказка
+.MovieDetailsPage__btn__tool-tip {
+  visibility: hidden;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+
+  font-size: 12px;
+
+  position: absolute;
+  z-index: 1;
+  top: 112%;
+
+  .MovieDetailsPage__btn-pack__list:hover & {
+    visibility: visible;
+  }
+}
+
+//стрелочка подсказки
+.MovieDetailsPage__btn__tool-tip::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%; /* At the top of the tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent rgba(0, 0, 0, 0.5);
+}
+
+svg.MovieDetailsPage__btn--added {
+  @extend %btn-in-list;
+}
+
+svg.MovieDetailsPage__btn--not-added {
+  @extend %btn-not-in-list;
+}
+
+.MovieDetailsPage__btn-pack__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 80px;
+  height: 50px;
+  padding: 5px;
+
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: $light-bgc-color;
+  color: $main-bgc-color;
+  transition: $transition;
+}
+
+.MovieDetailsPage__poster {
+  margin: 0 auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.MovieDetailsPage__info {
+  margin-bottom: 20px;
+}
+.MovieDetailsPage__title {
+  @extend %movie-title;
+}
+
+.MovieDetailsPage__element {
+  @extend %movies-details-element;
+  margin-bottom: 6px;
+}
+
+.MovieDetailsPage__element span {
+  display: inline-block;
+
+  margin-right: 5px;
+  padding: 4px;
+  border-radius: 3px;
+
+  background-color: $light-bgc-color;
+  color: $main-bgc-color;
+  font-size: 16px;
+  font-weight: 500;
+}
+.MovieDetailsPage__genres {
+  display: flex;
+  align-items: baseline;
+}
+
+.MovieDetailsPage__genres-list {
+  display: flex;
+}
+
+.MovieDetailsPage__genres--item {
+  font-size: 14px;
+  font-weight: 500;
+  color: $main-text-color;
+  font-weight: 500;
+}
+
+.MovieDetailsPage__countries {
+  margin-bottom: 5px;
+}
+.MovieDetailsPage__countries__item {
+  @extend %movies-details-element;
+}
+
+.MovieDetailsPage__companies {
+  margin-bottom: 5px;
+}
+.MovieDetailsPage__companies__item {
+  @extend %movies-details-element;
+}
+
+.MovieDetailsPage__extra__list {
+  display: flex;
+  border-radius: 5px;
+  height: 50px;
+  margin-bottom: 30px;
+}
+
+.MovieDetailsPage__extra__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc((100%) / 4);
+  height: 40px;
+  border: none;
+
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: $main-element-color;
+  color: $light-bgc-color;
+  transition: $transition;
+
+  border-right: 1px solid $second-bgc-color;
+
+  &:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  &:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-right: none;
+  }
+
+  &:hover {
+    height: 50px;
+    border-bottom-right-radius: 10px;
+  }
+}
+
+.MovieDetailsPage__extra__link {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+.MovieDetailsPage__extra__link--active {
+}

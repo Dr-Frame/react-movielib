@@ -11,10 +11,7 @@
 }
 
 .MovieList__title {
-  max-height: 80px;
-  font-size: 16px;
-  font-weight: 700;
-  text-align: center;
+  @extend %movie-card-title;
 }
 
 .MovieList__in-list--added {
@@ -22,45 +19,29 @@
 }
 
 .MovieList__lists {
-  margin-top: 10px;
-  margin-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  display: flex;
-  justify-content: space-around;
+  @extend %movie-card-list-icons;
 }
 .MovieList__descr {
-  font-weight: 500;
-  margin-bottom: 5px;
+  @extend %movie-card-element;
 }
 .MovieList__descr span {
-  @extend %card-span;
+  @extend %movie-card-span;
 }
 
 .MovieList__genre {
-  @extend %card-span;
+  @extend %movie-card-span;
 }
 
 .MovieList__genres-list {
-  font-size: 14px;
+  @extend %movie-card-genre-list;
 }
 
 .MovieList__release {
-  @include for-size(mobile) {
-    display: none;
-  }
-  @include for-size(tablet) {
-    display: inline-block;
+  @extend %movie-card-element;
+}
 
-    margin-right: 5px;
-    padding: 3px;
-    border-radius: 3px;
-
-    background-color: $main-element-color;
-    color: $light-element-color;
-    font-size: 14px;
-    font-weight: 500;
-  }
+.MovieList__release span {
+  @extend %movie-card-span;
 }
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
@@ -107,58 +88,24 @@
 /* Style the front side (fallback if image is missing) */
 .MovieList__flip-card-front {
   background-color: $main-bgc-color;
-  color: black;
 }
 
 /* Style the back side */
 .MovieList__flip-card-back {
-  padding: 10px;
+  padding: 5px;
   background-color: $light-bgc-color;
   color: $third-bgc-color;
   transform: rotateY(180deg);
 }
 
 .pagination {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: $main-element-color;
-  font-size: 16px;
-  font-weight: 500;
+  @extend %pagination;
 }
 
 .pagination__not-active-li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  height: 40px;
-  width: 40px;
-  border: 1px solid $main-element-color;
-  margin-right: 5px;
-  border-radius: 3px;
-  background-color: $main-element-color;
-  color: $main-text-color;
-  font-weight: 700;
-  transition: $transition;
-  cursor: pointer;
-
-  &:last-child {
-    margin-right: 0;
-  }
-
-  &:hover {
-    transform: scale(1.1);
-    font-size: 18px;
-  }
+  @extend %pagination__not-active-li;
 }
 
 .pagination__active-li {
-  border: 2px solid $main-element-color;
-  background-color: transparent;
-  color: $main-element-color;
-  font-size: 20px;
-  padding-bottom: 6px;
+  @extend %pagination__active-li;
 }

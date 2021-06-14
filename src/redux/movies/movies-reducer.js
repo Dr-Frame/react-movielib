@@ -99,18 +99,7 @@ const isLoading = createReducer(false, {
   [movieActions.fetchMovieDetailsRequest]: () => true,
   [movieActions.fetchMovieDetailsSuccess]: () => false,
   [movieActions.fetchMovieDetailsError]: () => false,
-  [movieActions.fetchMovieCreditsRequest]: () => true,
-  [movieActions.fetchMovieCreditsSuccess]: () => false,
-  [movieActions.fetchMovieCreditsError]: () => false,
-  [movieActions.fetchMovieReviewsRequest]: () => true,
-  [movieActions.fetchMovieReviewsSuccess]: () => false,
-  [movieActions.fetchMovieReviewsError]: () => false,
-  [movieActions.fetchSimilarMoviesRequest]: () => true,
-  [movieActions.fetchSimilarMoviesSuccess]: () => false,
-  [movieActions.fetchSimilarMoviesError]: () => false,
-  [movieActions.fetchMovieRecomendationsRequest]: () => true,
-  [movieActions.fetchMovieRecomendationsSuccess]: () => false,
-  [movieActions.fetchMovieRecomendationsError]: () => false,
+
   [movieActions.fetchMovieImagesRequest]: () => true,
   [movieActions.fetchMovieImagesSuccess]: () => false,
   [movieActions.fetchMovieImagesError]: () => false,
@@ -123,6 +112,21 @@ const isLoading = createReducer(false, {
   [movieActions.fetchTopRatedMoviesRequest]: () => true,
   [movieActions.fetchTopRatedMoviesSuccess]: () => false,
   [movieActions.fetchTopRatedMoviesError]: () => false,
+});
+
+const isExtraLoading = createReducer(false, {
+  [movieActions.fetchMovieCreditsRequest]: () => true,
+  [movieActions.fetchMovieCreditsSuccess]: () => false,
+  [movieActions.fetchMovieCreditsError]: () => false,
+  [movieActions.fetchMovieReviewsRequest]: () => true,
+  [movieActions.fetchMovieReviewsSuccess]: () => false,
+  [movieActions.fetchMovieReviewsError]: () => false,
+  [movieActions.fetchSimilarMoviesRequest]: () => true,
+  [movieActions.fetchSimilarMoviesSuccess]: () => false,
+  [movieActions.fetchSimilarMoviesError]: () => false,
+  [movieActions.fetchMovieRecomendationsRequest]: () => true,
+  [movieActions.fetchMovieRecomendationsSuccess]: () => false,
+  [movieActions.fetchMovieRecomendationsError]: () => false,
 });
 
 export default combineReducers({
@@ -146,4 +150,5 @@ export default combineReducers({
   personParticipation,
   topRatedMovies,
   isMenuOpened,
+  isExtraLoading,
 });

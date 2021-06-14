@@ -9,14 +9,13 @@ import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
 import QueuePlayNextRoundedIcon from "@material-ui/icons/QueuePlayNextRounded";
 import MovieFilterRoundedIcon from "@material-ui/icons/MovieFilterRounded";
 import classnames from "classnames";
-import { GrNext } from "react-icons/gr";
-import ArrowRightIcon from "@material-ui/icons/ArrowRight";
-import ArrowLeftIcon from "@material-ui/icons/ArrowLeft";
+
 import SkipNextIcon from "@material-ui/icons/SkipNext";
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
 import { motion } from "framer-motion";
+import Fallback from "../Fallback";
 
 export default function MovieList({
   moviesList,
@@ -54,8 +53,10 @@ export default function MovieList({
       exit={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
     >
-      <div className="MovieList__wrapper">
-        {!isLoading && moviesList && (
+      {isLoading ? (
+        <Fallback />
+      ) : (
+        <div className="MovieList__wrapper">
           <ul className="MovieList">
             {moviesList?.map(
               ({
@@ -148,7 +149,7 @@ export default function MovieList({
                             ))}
                           </ul>
                           <p className="MovieList__release">
-                            <span>Release date:</span> {release_date}
+                            <span>Release date:</span> <br /> {release_date}
                           </p>
                         </div>
                       </div>
@@ -158,25 +159,25 @@ export default function MovieList({
               }
             )}
           </ul>
-        )}
 
-        {moviesList.length > 0 && page && (
-          <Pagination
-            activePage={page}
-            itemsCountPerPage={resultsPerPage}
-            totalItemsCount={Number(totalResults)}
-            pageRangeDisplayed={3}
-            onChange={handlePageChange}
-            nextPageText={<KeyboardArrowRightIcon />}
-            prevPageText={<KeyboardArrowLeftIcon />}
-            firstPageText={<SkipPreviousIcon />}
-            lastPageText={<SkipNextIcon />}
-            innerClass="pagination"
-            activeClass="pagination__active-li"
-            itemClass="pagination__not-active-li"
-          />
-        )}
-      </div>
+          {moviesList.length > 0 && page && (
+            <Pagination
+              activePage={page}
+              itemsCountPerPage={resultsPerPage}
+              totalItemsCount={Number(totalResults)}
+              pageRangeDisplayed={3}
+              onChange={handlePageChange}
+              nextPageText={<KeyboardArrowRightIcon />}
+              prevPageText={<KeyboardArrowLeftIcon />}
+              firstPageText={<SkipPreviousIcon />}
+              lastPageText={<SkipNextIcon />}
+              innerClass="pagination"
+              activeClass="pagination__active-li"
+              itemClass="pagination__not-active-li"
+            />
+          )}
+        </div>
+      )}
     </motion.div>
   );
 }

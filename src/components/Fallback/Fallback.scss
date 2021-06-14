@@ -1,10 +1,13 @@
 @import "../../styles/parshals.scss";
 
 .fallback {
-  /*  margin: auto; */
-  position: fixed;
+  display: inline-block;
+  justify-content: center;
+  /* display: block;
+  margin: auto; */
+  /*  position: fixed;
   top: 50%;
-  left: 50%;
+  left: 50%; */
   /* bring your own prefixes */
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
 }
