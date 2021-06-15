@@ -1,0 +1,77 @@
+@import "../../../styles/parshals.scss";
+
+.Recomendations__title {
+  @extend %section-title;
+  width: 160px;
+}
+
+.Recomendations__list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+.Recomendations__flip-card {
+  background-color: transparent;
+  width: calc((100% - 10px) / 2);
+  height: 217.5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  &:nth-child(2n) {
+    margin-right: 0;
+  }
+}
+
+.Recomendations__flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.Recomendations__flip-card:hover .Recomendations__flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.Recomendations__flip-card-front,
+.Recomendations__flip-card-back {
+  border-radius: 3px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.Recomendations__flip-card-front {
+  background-color: $main-bgc-color;
+}
+
+.Recomendations__img {
+  border-radius: 3px;
+}
+
+.Recomendations__flip-card-back {
+  padding: 5px;
+  background-color: #000;
+  color: #fff;
+  transform: rotateY(180deg);
+}
+
+.Recomendations__movie-title {
+  @extend %movie-card-element;
+}
+
+.Recomendations__movie-title span {
+  @extend %movie-card-span;
+}
+
+.Recomendations__movie-vote {
+  @extend %movie-card-element;
+}
+.Recomendations__movie-vote span {
+  @extend %movie-card-span;
+}

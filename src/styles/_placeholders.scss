@@ -24,6 +24,20 @@
   }
 }
 
+%section-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+
+  background-color: $light-bgc-color;
+  color: $third-bgc-color;
+  font-size: 20px;
+}
+
 %movie-card-title {
   max-height: 80px;
   font-size: 14px;
@@ -120,7 +134,7 @@
   font-weight: 700;
   cursor: pointer;
   background-color: $main-element-color;
-  color: $light-bgc-color;
+  color: $main-text-color;
   transition: $transition;
   margin-bottom: 10px;
 
@@ -159,11 +173,53 @@
     -2px 2px 0 $light-bgc-color, -2px -2px 0 $light-bgc-color,
     2px 0px 0 $light-bgc-color, 0px 2px 0 $light-bgc-color,
     -2px 0px 0 $light-bgc-color, 0px -2px 0 $light-bgc-color;
+
   margin-bottom: 20px;
 }
 
 %movies-details-element {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   color: $main-text-color;
+}
+
+//extra =============================
+
+%card {
+  background-color: transparent;
+  width: calc((100% - 10px) / 2);
+  height: 217.5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  &:nth-child(2n) {
+    margin-right: 0;
+  }
+}
+
+%card-bottom {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  height: 75px;
+  width: 100%;
+  bottom: 0;
+  background-color: #44a4c7c6;
+  border-radius: 3px;
+}
+
+%card-name {
+  text-align: center;
+  font-size: 14px;
+  color: $third-bgc-color;
+  margin-bottom: 5px;
+}
+
+%card-second-name {
+  font-size: 13px;
+  color: $third-bgc-color;
+  font-weight: 500;
 }

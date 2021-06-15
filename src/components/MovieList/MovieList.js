@@ -149,7 +149,8 @@ export default function MovieList({
                             ))}
                           </ul>
                           <p className="MovieList__release">
-                            <span>Release date:</span> <br /> {release_date}
+                            <span>Release date:</span>
+                            {release_date.split("").slice(0, 4).join("")}
                           </p>
                         </div>
                       </div>

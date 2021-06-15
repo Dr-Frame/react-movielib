@@ -152,7 +152,6 @@ svg.MovieDetailsPage__btn--not-added {
   display: flex;
   border-radius: 5px;
   height: 50px;
-  margin-bottom: 30px;
 }
 
 .MovieDetailsPage__extra__item {
@@ -167,7 +166,7 @@ svg.MovieDetailsPage__btn--not-added {
   font-weight: 700;
   cursor: pointer;
   background-color: $main-element-color;
-  color: $light-bgc-color;
+  color: $main-text-color;
   transition: $transition;
 
   border-right: 1px solid $second-bgc-color;

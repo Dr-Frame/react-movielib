@@ -1,0 +1,42 @@
+@import "../../../styles/base.scss";
+.Crew__title {
+  @extend %section-title;
+}
+
+.Crew {
+  margin-top: 30px;
+}
+
+.Crew__list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.Crew__card-wrapper {
+  position: relative;
+}
+.Crew__list-card {
+  @extend %card;
+}
+
+.Crew__img {
+  height: 217.5px;
+  border-radius: 3px;
+}
+
+.Crew__bottom {
+  @extend %card-bottom;
+}
+.Crew__name {
+  @extend %card-name;
+}
+
+.Crew__job {
+  @extend %movie-card-span;
+  margin-bottom: 3px;
+  font-size: 12px;
+}
+
+.Crew__job-name {
+  @extend %card-second-name;
+}

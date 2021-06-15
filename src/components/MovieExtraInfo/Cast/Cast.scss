@@ -1,0 +1,44 @@
+@import "../../../styles/base.scss";
+
+.Cast__list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.Cast__title {
+  @extend %section-title;
+}
+
+.Cast {
+  margin-top: 30px;
+}
+
+.Cast__card-wrapper {
+  position: relative;
+}
+.Cast__img {
+  height: 217.5px;
+  border-radius: 3px;
+}
+
+.Cast__bottom {
+  @extend %card-bottom;
+}
+
+.Cast__name {
+  @extend %card-name;
+}
+.Cast__char {
+  @extend %movie-card-span;
+  margin-bottom: 3px;
+  font-size: 12px;
+}
+.Cast__char-name {
+  @extend %card-second-name;
+}
+///////
+
+.Cast__list-card {
+  @extend %card;
+}
