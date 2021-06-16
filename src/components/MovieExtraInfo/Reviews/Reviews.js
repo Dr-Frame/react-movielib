@@ -23,7 +23,7 @@ export default function Reviews() {
   const isExtraLoading = useSelector(moviesSelectors.getIsExtraLoading);
 
   return (
-    <section ref={reviewRef}>
+    <section className="Reviews" ref={reviewRef}>
       {isExtraLoading && !isLoading ? (
         <Fallback />
       ) : (
@@ -36,7 +36,7 @@ export default function Reviews() {
           <h2 className="Reviews__title">Reviews</h2>
           <ul className="Reviews__list">
             {reviews.length === 0 ? (
-              <p> There is no review yet</p>
+              <p className="Reviews__no-review"> There is no review yet</p>
             ) : (
               reviews.map(({ id, author, content }) => (
                 <li key={id} className="Reviews__item">

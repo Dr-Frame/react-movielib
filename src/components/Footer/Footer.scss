@@ -35,7 +35,7 @@
 
 .Footer__title {
   font-size: 20px;
-  color: $main-element-color;
+  color: $light-bgc-color;
 
   @include for-size(tablet) {
     margin-right: 10px;
@@ -47,9 +47,10 @@
   text-transform: uppercase;
   font-weight: 700;
   transition: $transition;
+  color: $main-element-color;
 
   &:hover {
-    color: $main-element-color;
+    color: $main-text-color;
     animation: shakeX;
   }
 
@@ -75,7 +76,7 @@
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 700;
-  color: $main-element-color;
+  color: $light-bgc-color;
   margin-bottom: 5px;
 
   @include for-size(tablet) {
@@ -91,6 +92,7 @@
   justify-content: flex-start;
   align-items: center;
   transition: $transition;
+  color: $main-text-color;
 
   &:hover {
     color: $light-bgc-color;

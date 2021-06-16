@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./TopRatedView.scss";
 import moviesSelectors from "../../redux/movies/movies-selectors";
 import moviesOperations from "../../redux/movies/movies-operations";
 import moviesActions from "../../redux/movies/movies-actions";
@@ -34,6 +34,7 @@ export default function Homeview() {
   return (
     <section>
       <div className="container">
+        <h1 className="Top__title"> Top Rated</h1>
         <MovieList
           moviesList={topMovieList}
           page={page}

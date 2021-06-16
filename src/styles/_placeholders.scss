@@ -15,7 +15,7 @@
   font-weight: 500;
   cursor: pointer;
   background-color: $main-element-color;
-  color: $light-bgc-color;
+  color: $main-text-color;
   transition: $transition;
   margin-bottom: 20px;
 
@@ -36,6 +36,26 @@
   background-color: $light-bgc-color;
   color: $third-bgc-color;
   font-size: 20px;
+}
+
+%section-subtitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 110px;
+  height: 40px;
+  border-radius: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
+
+  background-color: $main-element-color;
+  color: $main-text-color;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+%section-padding {
 }
 
 %movie-card-title {

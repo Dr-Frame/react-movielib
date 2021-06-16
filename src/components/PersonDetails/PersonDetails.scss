@@ -1,0 +1,68 @@
+@import "../../styles/base.scss";
+
+.Person {
+  padding-top: 20px;
+}
+
+.Person__name {
+  @extend %section-title;
+  width: auto;
+  margin-bottom: 30px;
+}
+
+.Person__img {
+  margin: 0 auto;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+.Person__info {
+  @extend %section-subtitle;
+}
+.Person__list {
+}
+
+.Person__list-item {
+}
+
+.Person__decr {
+  @extend %movies-details-element;
+  margin-bottom: 6px;
+}
+
+.Person__decr span {
+  display: inline-block;
+
+  margin-right: 5px;
+  padding: 4px;
+  border-radius: 3px;
+
+  background-color: $light-bgc-color;
+  color: $main-bgc-color;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.Person__bio {
+  display: inline-block;
+
+  margin-right: 5px;
+  padding: 4px;
+  border-radius: 3px;
+
+  background-color: $light-bgc-color;
+  color: $main-bgc-color;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.Person__bio-descr {
+  @extend %movies-details-element;
+  margin-bottom: 6px;
+}
+
+.Person__filmography {
+  @extend %section-subtitle;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

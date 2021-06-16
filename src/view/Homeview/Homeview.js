@@ -49,6 +49,7 @@ export default function Homeview() {
       className="HomeView"
     >
       <div className="container">
+        <h1 className="Homeview__title"> Trending</h1>
         <MovieList
           moviesList={moviesList}
           page={page}

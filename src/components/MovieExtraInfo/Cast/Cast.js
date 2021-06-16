@@ -8,13 +8,13 @@ import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import Fallback from "../../Fallback";
 
-export default function Cast() {
+export default function Cast({ ref }) {
   const dispatch = useDispatch();
   const location = useLocation();
   const { state } = location;
   const match = useRouteMatch();
   const { params } = match;
-
+  console.log(ref);
   const castRef = useRef();
 
   useEffect(() => {

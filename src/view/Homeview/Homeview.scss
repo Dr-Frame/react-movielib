@@ -1,1 +1,7 @@
 @import "../../styles/parshals.scss";
+
+.Homeview__title {
+  @extend %section-subtitle;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}

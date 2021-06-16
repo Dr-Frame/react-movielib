@@ -1,0 +1,6 @@
+@import "../../styles/parshals.scss";
+.Top__title {
+  @extend %section-subtitle;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}

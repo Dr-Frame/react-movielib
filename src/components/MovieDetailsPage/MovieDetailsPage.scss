@@ -155,6 +155,47 @@ svg.MovieDetailsPage__btn--not-added {
 }
 
 .MovieDetailsPage__extra__item {
+  overflow: hidden;
+  &:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  &:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-right: none;
+  }
+}
+
+.MovieDetailsPage__extra__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  height: 40px;
+  border: none;
+
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: $main-element-color;
+  color: $main-text-color;
+  transition: $transition;
+
+  border-right: 1px solid $second-bgc-color;
+  &:hover,
+  &:focus {
+    height: 50px;
+    border-bottom-right-radius: 10px;
+  }
+}
+
+.MovieDetailsPage__extra__link--active {
+  height: 50px;
+  border-bottom-right-radius: 10px;
+}
+
+/* .MovieDetailsPage__extra__item {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -180,18 +221,21 @@ svg.MovieDetailsPage__btn--not-added {
     border-bottom-right-radius: 5px;
     border-right: none;
   }
-
-  &:hover {
+  &:hover,
+  &:focus {
     height: 50px;
     border-bottom-right-radius: 10px;
   }
+
 }
 
 .MovieDetailsPage__extra__link {
-  display: block;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  height: 100%;
 }
 
 .MovieDetailsPage__extra__link--active {
-}
+} */

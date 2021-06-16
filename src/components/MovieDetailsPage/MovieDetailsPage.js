@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./MovieDetailsPage.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -194,7 +194,7 @@ export default function MovieDetailsPage() {
                     >
                       <FavoriteRoundedIcon className="MovieDetailsPage__btn--added" />
                     </button>
-                    <span class="MovieDetailsPage__btn__tool-tip">
+                    <span className="MovieDetailsPage__btn__tool-tip">
                       Delete from favorites
                     </span>
                   </li>
@@ -208,7 +208,7 @@ export default function MovieDetailsPage() {
                     >
                       <FavoriteRoundedIcon className="MovieDetailsPage__btn--not-added" />
                     </button>
-                    <span class="MovieDetailsPage__btn__tool-tip">
+                    <span className="MovieDetailsPage__btn__tool-tip">
                       Add to favorites
                     </span>
                   </li>
@@ -226,7 +226,7 @@ export default function MovieDetailsPage() {
                     >
                       <QueuePlayNextRoundedIcon className="MovieDetailsPage__btn--added" />
                     </button>
-                    <span class="MovieDetailsPage__btn__tool-tip">
+                    <span className="MovieDetailsPage__btn__tool-tip">
                       Delete from watched
                     </span>
                   </li>
@@ -240,7 +240,7 @@ export default function MovieDetailsPage() {
                     >
                       <QueuePlayNextRoundedIcon className="MovieDetailsPage__btn--not-added" />
                     </button>
-                    <span class="MovieDetailsPage__btn__tool-tip">
+                    <span className="MovieDetailsPage__btn__tool-tip">
                       Add to watched
                     </span>
                   </li>
@@ -256,7 +256,7 @@ export default function MovieDetailsPage() {
                     >
                       <MovieFilterRoundedIcon className="MovieDetailsPage__btn--added" />
                     </button>
-                    <span class="MovieDetailsPage__btn__tool-tip">
+                    <span className="MovieDetailsPage__btn__tool-tip">
                       Delete from queue
                     </span>
                   </li>
@@ -270,7 +270,7 @@ export default function MovieDetailsPage() {
                     >
                       <MovieFilterRoundedIcon className="MovieDetailsPage__btn--not-added" />
                     </button>
-                    <span class="MovieDetailsPage__btn__tool-tip">
+                    <span className="MovieDetailsPage__btn__tool-tip">
                       Add to queue
                     </span>
                   </li>

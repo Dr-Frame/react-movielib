@@ -1,5 +1,9 @@
 @import "../../../styles/base.scss";
 
+.Reviews {
+  padding-bottom: 20px;
+}
+
 .Reviews__title {
   @extend %section-title;
 }
@@ -31,4 +35,11 @@
 .Reviews__descr {
   color: $main-text-color;
   font-size: 14px;
+}
+
+.Reviews__no-review {
+  font-size: 16px;
+  color: $light-bgc-color;
+  text-align: center;
+  font-weight: 500;
 }
