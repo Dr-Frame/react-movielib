@@ -1,0 +1,8 @@
+@import "../../styles/parshals.scss";
+
+.Queue {
+  padding-top: 20px;
+}
+.Queue__empty {
+  @extend %movie-lists;
+}

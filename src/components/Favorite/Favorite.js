@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import "./Favorite.scss";
 import moviesSelectors from "../../redux/movies/movies-selectors";
 import moviesOperations from "../../redux/movies/movies-operations";
 import { useLocation } from "react-router";
 import MovieList from "../MovieList/MovieList";
 import moviesActions from "../../redux/movies/movies-actions";
+import { motion } from "framer-motion";
 
 export default function Favorite() {
   const location = useLocation();
@@ -21,16 +23,27 @@ export default function Favorite() {
     setPage(pageNumber);
   };
 
-  console.log(favorited);
   return (
-    <section>
+    <section className="Favorite">
       <div className="container">
-        <MovieList
-          moviesList={favorited}
-          page={page}
-          handlePageChange={handlePageChange}
-          totalResults={favorited.length}
-        />
+        {favorited.length === 0 ? (
+          <motion.p
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="Favorite__empty"
+          >
+            You have not added any film yet!
+          </motion.p>
+        ) : (
+          <MovieList
+            moviesList={favorited}
+            page={page}
+            handlePageChange={handlePageChange}
+            totalResults={favorited.length}
+          />
+        )}
       </div>
     </section>
   );

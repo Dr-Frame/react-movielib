@@ -6,6 +6,7 @@ import moviesOperations from "../../redux/movies/movies-operations";
 import { useRouteMatch } from "react-router";
 import MovieList from "../MovieList";
 import Fallback from "../Fallback";
+import { motion } from "framer-motion";
 
 export default function PersonDetails() {
   const dispatch = useDispatch();
@@ -33,7 +34,13 @@ export default function PersonDetails() {
       {isLoading ? (
         <Fallback />
       ) : (
-        <div className="container">
+        <motion.div
+          initial={{ opacity: 0 }}
+          exit={{ opacity: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="container"
+        >
           <h1 className="Person__name">{name}</h1>
           {profile_path && (
             <img
@@ -72,7 +79,7 @@ export default function PersonDetails() {
           {personParticipation && (
             <MovieList moviesList={personParticipation} />
           )}
-        </div>
+        </motion.div>
       )}
     </section>
   );

@@ -1,8 +1,8 @@
 @import "../../styles/parshals.scss";
 
-.Watched {
+.Favorite {
   padding-top: 20px;
 }
-.Watched__empty {
+.Favorite__empty {
   @extend %movie-lists;
 }
