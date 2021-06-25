@@ -50,19 +50,15 @@ export default function Crew() {
                     >
                       <div className="Crew__card-wrapper">
                         <div className="Crew__card">
-                          {profile_path ? (
-                            <img
-                              className="Crew__img"
-                              src={`https://image.tmdb.org/t/p/w200/${profile_path}`}
-                              alt={name}
-                            ></img>
-                          ) : (
-                            <img
-                              className="Crew__img"
-                              src="/img/avatar_man.webp"
-                              alt={name}
-                            ></img>
-                          )}
+                          <img
+                            className="Crew__img"
+                            src={
+                              profile_path
+                                ? `https://image.tmdb.org/t/p/w300/${profile_path}`
+                                : "/img/empty-profile.webp"
+                            }
+                            alt={name}
+                          ></img>
                         </div>
                         <div className="Crew__bottom">
                           <h4 className="Crew__name">{name}</h4>

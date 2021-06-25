@@ -28,7 +28,9 @@ export default function PersonDetails() {
   const { name, profile_path, birthday, place_of_birth, biography } =
     personInfo;
   const isLoading = useSelector(moviesSelectors.getLoading);
+  const isExtraLoading = useSelector(moviesSelectors.getIsExtraLoading);
 
+  console.log(personParticipation);
   return (
     <section className="Person">
       {isLoading ? (
@@ -42,42 +44,56 @@ export default function PersonDetails() {
           className="container"
         >
           <h1 className="Person__name">{name}</h1>
-          {profile_path && (
+          {!isLoading && isExtraLoading ? (
+            <Fallback />
+          ) : (
             <img
               className="Person__img"
-              src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
+              src={
+                profile_path
+                  ? `https://image.tmdb.org/t/p/w500/${profile_path}`
+                  : "/img/empty-profile.webp"
+              }
               width="200"
               alt={name}
             ></img>
           )}
           <p className="Person__info">Information</p>
-          <ul className="Person__list">
-            <li className="Person__list-item">
-              <p className="Person__decr">
-                <span>Age:</span>
+          {birthday && place_of_birth ? (
+            <div className="Person__info__wrapper">
+              <ul className="Person__list">
+                <li className="Person__list-item">
+                  <p className="Person__decr">
+                    <span>Age:</span>
 
-                {birthday &&
-                  new Date().getFullYear() -
-                    birthday.split("").slice(0, 4).join("")}
-              </p>
-            </li>
-            <li className="Person__list-item">
-              <p className="Person__decr">
-                <span>Date of birth:</span> {birthday}
-              </p>
-            </li>
-            <li className="Person__list-item">
-              <p className="Person__decr">
-                <span>Place of birth:</span> {place_of_birth}
-              </p>
-            </li>
-          </ul>
-          <p className="Person__bio">Biography:</p>
-          <p className="Person__bio-descr">{biography}</p>
+                    {birthday &&
+                      new Date().getFullYear() -
+                        birthday.split("").slice(0, 4).join("")}
+                  </p>
+                </li>
+                <li className="Person__list-item">
+                  <p className="Person__decr">
+                    <span>Date of birth:</span> {birthday}
+                  </p>
+                </li>
+                <li className="Person__list-item">
+                  <p className="Person__decr">
+                    <span>Place of birth:</span> {place_of_birth}
+                  </p>
+                </li>
+              </ul>
+              <p className="Person__bio">Biography:</p>
+              <p className="Person__bio-descr">{biography}</p>
+            </div>
+          ) : (
+            <p className="Person__no-info">Oops...No information avaliable</p>
+          )}
 
-          <h2 className="Person__filmography">Filmography</h2>
-          {personParticipation && (
-            <MovieList moviesList={personParticipation} />
+          {personParticipation.length !== 0 && (
+            <>
+              <h2 className="Person__filmography">Filmography</h2>
+              <MovieList moviesList={personParticipation} />
+            </>
           )}
         </motion.div>
       )}

@@ -26,6 +26,7 @@ export default function Favorite() {
   return (
     <section className="Favorite">
       <div className="container">
+        <h1 className="Favorite__title">Favorite list</h1>
         {favorited.length === 0 ? (
           <motion.p
             initial={{ opacity: 0 }}
@@ -39,9 +40,9 @@ export default function Favorite() {
         ) : (
           <MovieList
             moviesList={favorited}
-            page={page}
+            /* page={page}
             handlePageChange={handlePageChange}
-            totalResults={favorited.length}
+            totalResults={favorited.length} */
           />
         )}
       </div>

@@ -4,6 +4,11 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin: -5px;
+
+  @include for-size(desktop) {
+    margin: -10px;
+  }
 }
 
 .MovieList__img {
@@ -21,6 +26,17 @@
 .MovieList__lists {
   @extend %movie-card-list-icons;
 }
+
+.MovieList__lists .MovieList__in-list {
+  font-size: 20px;
+  @include for-size(tablet) {
+    font-size: 30px;
+  }
+  @include for-size(desktop) {
+    font-size: 40px;
+  }
+}
+
 .MovieList__descr {
   @extend %movie-card-element;
 }
@@ -30,10 +46,22 @@
 
 .MovieList__genre {
   @extend %movie-card-span;
+  @include for-size(tablet) {
+    margin-bottom: 2px;
+  }
+  @include for-size(desktop) {
+    margin-bottom: 5px;
+  }
 }
 
 .MovieList__genres-list {
   @extend %movie-card-genre-list;
+  @include for-size(tablet) {
+    margin-bottom: 3px;
+  }
+  @include for-size(desktop) {
+    margin-bottom: 10px;
+  }
 }
 
 .MovieList__release {
@@ -47,15 +75,21 @@
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .MovieList__flip-card {
   background-color: transparent;
-  width: calc((100% - 10px) / 2);
+  width: 145px;
   height: 217.5px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  margin: 5px;
 
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 
-  &:nth-child(2n) {
-    margin-right: 0;
+  @include for-size(tablet) {
+    width: 165px;
+    height: 247.5px;
+  }
+
+  @include for-size(desktop) {
+    width: 240px;
+    height: 360px;
+    margin: 10px;
   }
 }
 
@@ -88,6 +122,9 @@
 /* Style the front side (fallback if image is missing) */
 .MovieList__flip-card-front {
   background-color: $main-bgc-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Style the back side */
@@ -96,6 +133,14 @@
   background-color: $light-bgc-color;
   color: $third-bgc-color;
   transform: rotateY(180deg);
+
+  @include for-size(tablet) {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  @include for-size(desktop) {
+    padding: 20px;
+  }
 }
 
 .pagination {

@@ -16,14 +16,12 @@ export default function MovieSearch() {
   const { search } = location;
   const { push } = useHistory();
 
-  //для закрытие меню мобильного при открытии
-  useEffect(() => dispatch(moviesActions.closeMenu()), []);
+  /*  //для закрытие меню мобильного при открытии
+  useEffect(() => dispatch(moviesActions.closeMenu()), []); */
 
   //из адресной строки браузера выделяем сам запрос, что бы при обновлении страницы он был как запрос.
   const initialQueryState = queryString.parse(search);
-  console.log("initialQueryState", initialQueryState);
 
-  console.log("location page", location.page);
   const [query, setQuery] = useState(initialQueryState.query || "");
 
   //если вернулись не с 1 страницы списка фильмов, то рендерим ее , если да, то рендерим 1
@@ -65,6 +63,7 @@ export default function MovieSearch() {
     if (query === "") {
       return;
     }
+    setPage(1);
     dispatch(moviesOperations.fetchSearchMovies(query));
     location.search = search;
   };

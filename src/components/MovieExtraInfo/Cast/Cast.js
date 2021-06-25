@@ -53,24 +53,24 @@ export default function Cast({ ref }) {
                     >
                       <div className="Cast__card-wrapper">
                         <div className="Cast__card">
-                          {profile_path ? (
-                            <img
-                              className="Cast__img"
-                              src={`https://image.tmdb.org/t/p/w200/${profile_path}`}
-                              alt={name}
-                            ></img>
-                          ) : (
-                            <img
-                              className="Cast__img"
-                              src="/img/avatar_man.webp"
-                              alt={name}
-                            ></img>
-                          )}
+                          <img
+                            className="Cast__img"
+                            src={
+                              profile_path
+                                ? `https://image.tmdb.org/t/p/w300/${profile_path}`
+                                : "/img/empty-profile.webp"
+                            }
+                            alt={name}
+                          ></img>
                         </div>
                         <div className="Cast__bottom">
                           <h4 className="Cast__name">{name}</h4>
                           <p className="Cast__char">Character:</p>
-                          <p className="Cast__char-name">{character}</p>
+                          <p className="Cast__char-name">
+                            {character.split(" ").includes("(voice)")
+                              ? character.split(" ").slice(0, 2).join(" ")
+                              : character}
+                          </p>
                         </div>
                       </div>
                     </NavLink>

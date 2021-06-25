@@ -6,7 +6,7 @@ import Navigation from "../Navigation";
 export default function Header() {
   return (
     <header className="Header">
-      <div className="container">
+      <div className="Header__container container">
         <Navigation />
       </div>
     </header>

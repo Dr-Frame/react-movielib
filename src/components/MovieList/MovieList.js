@@ -94,13 +94,15 @@ export default function MovieList({
                     >
                       <div className="MovieList__flip-card-inner">
                         <div className="MovieList__flip-card-front">
-                          {poster_path && (
-                            <img
-                              className="MovieList__img"
-                              src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
-                              alt=""
-                            />
-                          )}
+                          <img
+                            className="MovieList__img"
+                            src={
+                              poster_path
+                                ? `https://image.tmdb.org/t/p/w300/${poster_path}`
+                                : "/img/movie-empty.webp"
+                            }
+                            alt="movie-name"
+                          />
                         </div>
                         <div className="MovieList__flip-card-back">
                           <h2 className="MovieList__title">

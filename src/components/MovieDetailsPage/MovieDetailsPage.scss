@@ -1,7 +1,5 @@
 @import "../../styles/parshals.scss";
 
-.MovieDetailsPage {
-}
 .MovieDetailsPage__go-back-wrapper {
   display: flex;
   justify-content: center;
@@ -9,12 +7,20 @@
 }
 .MovieDetailsPage__go-back {
   @extend %go-back-btn;
+  @include for-size(tablet) {
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
 }
 
 .MovieDetailsPage__btn-pack {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
+
+  @include for-size(tablet) {
+    margin-bottom: 40px;
+  }
 }
 
 //контейнер подскахки
@@ -88,14 +94,49 @@ svg.MovieDetailsPage__btn--not-added {
   transition: $transition;
 }
 
+.MovieDetailsPage__movie-info {
+  @include for-size(desktop) {
+    padding: 0px 150px;
+  }
+}
+
+.MovieDetailsPage__movie-info--wrapper {
+  @include for-size(tablet) {
+    display: flex;
+    margin-bottom: 40px;
+  }
+  @include for-size(desktop) {
+    align-items: center;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    border-bottom: 1px solid $light-bgc-color;
+    border-top: 1px solid $light-bgc-color;
+  }
+}
 .MovieDetailsPage__poster {
   margin: 0 auto;
   border-radius: 5px;
   margin-bottom: 10px;
+
+  @include for-size(tablet) {
+    margin-right: 20px;
+    width: 300px;
+    height: 500px;
+    margin-bottom: 0;
+  }
+  @include for-size(desktop) {
+    width: 360px;
+    height: auto;
+    margin-right: 30px;
+  }
 }
 
 .MovieDetailsPage__info {
   margin-bottom: 20px;
+
+  @include for-size(tablet) {
+    margin-bottom: 0px;
+  }
 }
 .MovieDetailsPage__title {
   @extend %movie-title;
@@ -117,6 +158,10 @@ svg.MovieDetailsPage__btn--not-added {
   color: $main-bgc-color;
   font-size: 16px;
   font-weight: 500;
+
+  @include for-size(tablet) {
+    font-size: 17px;
+  }
 }
 .MovieDetailsPage__genres {
   display: flex;
@@ -132,6 +177,9 @@ svg.MovieDetailsPage__btn--not-added {
   font-weight: 500;
   color: $main-text-color;
   font-weight: 500;
+  @include for-size(tablet) {
+    font-size: 16px;
+  }
 }
 
 .MovieDetailsPage__countries {
@@ -148,10 +196,23 @@ svg.MovieDetailsPage__btn--not-added {
   @extend %movies-details-element;
 }
 
+.MovieDetailsPage__extra {
+  display: flex;
+  justify-content: center;
+
+  @include for-size(tablet) {
+    margin-bottom: 30px;
+  }
+}
+
 .MovieDetailsPage__extra__list {
   display: flex;
   border-radius: 5px;
   height: 50px;
+
+  @include for-size(tablet) {
+    height: 60px;
+  }
 }
 
 .MovieDetailsPage__extra__item {
@@ -186,13 +247,30 @@ svg.MovieDetailsPage__btn--not-added {
   &:hover,
   &:focus {
     height: 50px;
-    border-bottom-right-radius: 10px;
+    border-bottom-right-radius: 5px;
+  }
+
+  @include for-size(tablet) {
+    width: 120px;
+    height: 50px;
+    margin-bottom: 10px;
+    font-size: 20px;
+
+    &:hover,
+    &:focus {
+      height: 60px;
+      border-bottom-right-radius: 5px;
+    }
   }
 }
 
 .MovieDetailsPage__extra__link--active {
   height: 50px;
-  border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 5px;
+
+  @include for-size(tablet) {
+    height: 60px;
+  }
 }
 
 /* .MovieDetailsPage__extra__item {

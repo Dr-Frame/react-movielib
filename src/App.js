@@ -48,6 +48,9 @@ function App() {
               <Route exact path="/">
                 <Homeview />
               </Route>
+              <Route path="/movies/:id/movies/:id">
+                <MovieDetailsPage />
+              </Route>
               <Route path="/people/movies/:id">
                 <MovieDetailsPage />
               </Route>

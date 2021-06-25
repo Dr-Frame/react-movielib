@@ -224,7 +224,7 @@ export default function MovieDetailsPage() {
                         setIsMovieIncludedInWatched(false);
                       }}
                     >
-                      <QueuePlayNextRoundedIcon className="MovieDetailsPage__btn--added" />
+                      <MovieFilterRoundedIcon className="MovieDetailsPage__btn--added" />
                     </button>
                     <span className="MovieDetailsPage__btn__tool-tip">
                       Delete from watched
@@ -238,7 +238,7 @@ export default function MovieDetailsPage() {
                         dispatch(movieActions.addToWatched(currentMovie))
                       }
                     >
-                      <QueuePlayNextRoundedIcon className="MovieDetailsPage__btn--not-added" />
+                      <MovieFilterRoundedIcon className="MovieDetailsPage__btn--not-added" />
                     </button>
                     <span className="MovieDetailsPage__btn__tool-tip">
                       Add to watched
@@ -254,7 +254,7 @@ export default function MovieDetailsPage() {
                         setIsMovieIncludedInQueue(false);
                       }}
                     >
-                      <MovieFilterRoundedIcon className="MovieDetailsPage__btn--added" />
+                      <QueuePlayNextRoundedIcon className="MovieDetailsPage__btn--added" />
                     </button>
                     <span className="MovieDetailsPage__btn__tool-tip">
                       Delete from queue
@@ -268,7 +268,7 @@ export default function MovieDetailsPage() {
                         dispatch(movieActions.addToQueue(currentMovie))
                       }
                     >
-                      <MovieFilterRoundedIcon className="MovieDetailsPage__btn--not-added" />
+                      <QueuePlayNextRoundedIcon className="MovieDetailsPage__btn--not-added" />
                     </button>
                     <span className="MovieDetailsPage__btn__tool-tip">
                       Add to queue
@@ -277,94 +277,99 @@ export default function MovieDetailsPage() {
                 )}
               </ul>
               <div className="MovieDetailsPage__movie-info">
-                {poster_path && (
+                <div className="MovieDetailsPage__movie-info--wrapper">
                   <img
                     className="MovieDetailsPage__poster"
-                    src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                    src={
+                      poster_path
+                        ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+                        : "/img/movie-empty.webp"
+                    }
                     alt="movie-poster"
                     width="200"
                   ></img>
-                )}
 
-                <div className="MovieDetailsPage__info">
-                  <h1 className="MovieDetailsPage__title">{title}</h1>
-                  <p className="MovieDetailsPage__element">
-                    <span>User rate:</span>
-                    {vote_average}
-                  </p>
-                  <p className="MovieDetailsPage__element">
-                    <span>Release date:</span> {release_date}
-                  </p>
-
-                  <p className="MovieDetailsPage__element">
-                    <span>Budget:</span> {budget} $
-                  </p>
-                  <p className="MovieDetailsPage__element">
-                    <span>Revenue:</span> {revenue} $
-                  </p>
-                  <p className="MovieDetailsPage__element">
-                    <span>Run time:</span> {runtime} min
-                  </p>
-                  <div className="MovieDetailsPage__genres">
+                  <div className="MovieDetailsPage__info">
+                    <h1 className="MovieDetailsPage__title">{title}</h1>
                     <p className="MovieDetailsPage__element">
-                      <span>Genres:</span>
+                      <span>User rate:</span>
+                      {vote_average}
                     </p>
-                    {genres && (
-                      <ul className="MovieDetailsPage__genres-list">
-                        {genres.map(({ id, name }) => {
+                    <p className="MovieDetailsPage__element">
+                      <span>Release date:</span> {release_date}
+                    </p>
+
+                    <p className="MovieDetailsPage__element">
+                      <span>Budget:</span> {budget} $
+                    </p>
+                    <p className="MovieDetailsPage__element">
+                      <span>Revenue:</span> {revenue} $
+                    </p>
+                    <p className="MovieDetailsPage__element">
+                      <span>Run time:</span> {runtime} min
+                    </p>
+                    <div className="MovieDetailsPage__genres">
+                      <p className="MovieDetailsPage__element">
+                        <span>Genres:</span>
+                      </p>
+                      {genres && (
+                        <ul className="MovieDetailsPage__genres-list">
+                          {genres.map(({ id, name }) => {
+                            return (
+                              <li
+                                key={id}
+                                className="MovieDetailsPage__genres--item"
+                              >
+                                {name},&nbsp;
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      )}
+                    </div>
+
+                    <p className="MovieDetailsPage__element">
+                      <span>Countries:</span>
+                    </p>
+                    {production_countries?.length > 0 && (
+                      <ul className="MovieDetailsPage__countries">
+                        {production_countries.map(({ name }) => {
                           return (
                             <li
-                              key={id}
-                              className="MovieDetailsPage__genres--item"
+                              key={name}
+                              className="MovieDetailsPage__countries__item"
                             >
-                              {name},&nbsp;
+                              - {name}
                             </li>
                           );
                         })}
                       </ul>
                     )}
+
+                    <p className="MovieDetailsPage__element">
+                      <span>Production companies:</span>
+                    </p>
+                    {production_companies?.length > 0 && (
+                      <ul className="MovieDetailsPage__companies">
+                        {production_companies.map(({ name }) => {
+                          return (
+                            <li
+                              key={name}
+                              className="MovieDetailsPage__companies__item"
+                            >
+                              - {name}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                    <h3 className="MovieDetailsPage__element">
+                      <span>Overview</span>
+                    </h3>
+                    <p className="MovieDetailsPage__element">{overview}</p>
                   </div>
-
-                  <p className="MovieDetailsPage__element">
-                    <span>Countries:</span>
-                  </p>
-                  {production_countries?.length > 0 && (
-                    <ul className="MovieDetailsPage__countries">
-                      {production_countries.map(({ name }) => {
-                        return (
-                          <li
-                            key={name}
-                            className="MovieDetailsPage__countries__item"
-                          >
-                            - {name}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  )}
-
-                  <p className="MovieDetailsPage__element">
-                    <span>Production companies:</span>
-                  </p>
-                  {production_companies?.length > 0 && (
-                    <ul className="MovieDetailsPage__companies">
-                      {production_companies.map(({ name }) => {
-                        return (
-                          <li
-                            key={name}
-                            className="MovieDetailsPage__companies__item"
-                          >
-                            - {name}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  )}
-                  <h3 className="MovieDetailsPage__element">
-                    <span>Overview</span>
-                  </h3>
-                  <p className="MovieDetailsPage__element">{overview}</p>
                 </div>
+
                 <div className="MovieDetailsPage__extra">
                   <ul className="MovieDetailsPage__extra__list">
                     <li className="MovieDetailsPage__extra__item">

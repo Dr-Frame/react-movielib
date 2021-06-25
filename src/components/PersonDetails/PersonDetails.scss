@@ -2,31 +2,62 @@
 
 .Person {
   padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .Person__name {
   @extend %section-title;
   width: auto;
   margin-bottom: 30px;
+
+  @include for-size(tablet) {
+    width: 300px;
+  }
+  @include for-size(desktop) {
+    width: 400px;
+  }
 }
 
 .Person__img {
   margin: 0 auto;
   border-radius: 3px;
   margin-bottom: 20px;
+  @include for-size(tablet) {
+    width: 250px;
+  }
+  @include for-size(desktop) {
+    width: 300px;
+  }
 }
 .Person__info {
   @extend %section-subtitle;
-}
-.Person__list {
+  margin-bottom: 20px;
 }
 
-.Person__list-item {
+.Person__no-info {
+  text-align: center;
+  color: $light-bgc-color;
+  font-weight: 500;
+}
+
+.Person__info__wrapper {
+  @include for-size(tablet) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  @include for-size(desktop) {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
 }
 
 .Person__decr {
   @extend %movies-details-element;
   margin-bottom: 6px;
+
+  @include for-size(tablet) {
+    margin-bottom: 10px;
+  }
 }
 
 .Person__decr span {
@@ -65,4 +96,9 @@
   @extend %section-subtitle;
   margin-top: 20px;
   margin-bottom: 20px;
+
+  @include for-size(tablet) {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
 }

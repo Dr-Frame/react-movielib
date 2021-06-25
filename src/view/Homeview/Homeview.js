@@ -4,6 +4,7 @@ import moviesSelectors from "../../redux/movies/movies-selectors";
 import moviesOperations from "../../redux/movies/movies-operations";
 import moviesActions from "../../redux/movies/movies-actions";
 import MovieList from "../../components/MovieList";
+import Swiper from "../../components/Swiper";
 import { useDispatch, useSelector } from "react-redux";
 import {
   NavLink,
@@ -50,6 +51,7 @@ export default function Homeview() {
     >
       <div className="container">
         <h1 className="Homeview__title"> Trending</h1>
+        <Swiper />
         <MovieList
           moviesList={moviesList}
           page={page}

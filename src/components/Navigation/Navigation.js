@@ -26,169 +26,170 @@ import { motion } from "framer-motion";
 
 export default function Navigation() {
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -50 }}
-      exit={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="Navigation__mob"
-    >
-      <NavLink className="Navigation__logo" exact to="/">
-        <BiCameraMovie className="Navigation__logo--icon" />
-        MovieLib
-      </NavLink>
-      <Menu
-        styles={{
-          top: "35px",
-          backgroundColor: "#60a6bf",
-        }}
-        menuButton={({ open }) => (
-          <MenuButton className="Navigation__btn">
-            {open ? <VscChromeClose /> : <GiHamburgerMenu />}
-          </MenuButton>
-        )}
+    <>
+      <motion.nav
+        initial={{ opacity: 0, y: -50 }}
+        exit={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="Navigation__mob"
       >
-        <MenuItem className="Navigation__menu-item">
-          <NavLink
-            exact
-            to="/"
-            className="Navigation__link"
-            activeClassName="Navigation__link_active"
-          >
-            <HomeRoundedIcon className="Navigation__icon" />
-            Home
-          </NavLink>
-        </MenuItem>
-        <MenuItem>
-          <NavLink
-            to="/top"
-            className="Navigation__link"
-            activeClassName="Navigation__link_active"
-          >
-            <LocalActivityRoundedIcon className="Navigation__icon" />
-            Top
-          </NavLink>
-        </MenuItem>
-        <MenuItem>
-          <NavLink
-            exact
-            to="/movies"
-            className="Navigation__link"
-            activeClassName="Navigation__link_active"
-          >
-            <PageviewRoundedIcon className="Navigation__icon" />
-            Search
-          </NavLink>
-        </MenuItem>
-        <MenuDivider />
-        <MenuHeader style={{ color: "blue" }}>My Lists</MenuHeader>
-        <MenuItem>
-          <NavLink
-            to={{ pathname: `/favorite` }}
-            className="Navigation__link"
-            activeClassName="Navigation__link_active"
-          >
-            <FavoriteRoundedIcon className="Navigation__icon" />
-            Favorite
-          </NavLink>
-        </MenuItem>
-        <MenuItem>
-          <NavLink
-            to={{ pathname: `/watched` }}
-            className="Navigation__link"
-            activeClassName="Navigation__link_active"
-          >
-            <MovieFilterRoundedIcon className="Navigation__icon" />
-            Watched
-          </NavLink>
-        </MenuItem>
-        <MenuItem>
-          <NavLink
-            to={{ pathname: `/queue` }}
-            className="Navigation__link"
-            activeClassName="Navigation__link_active"
-          >
-            <QueuePlayNextRoundedIcon className="Navigation__icon" />
-            Queue
-          </NavLink>
-        </MenuItem>
-      </Menu>
-    </motion.nav>
-  );
-}
+        <NavLink className="Navigation__logo" exact to="/">
+          <BiCameraMovie className="Navigation__logo--icon" />
+          MovieLib
+        </NavLink>
+        <Menu
+          styles={{
+            top: "35px",
+            backgroundColor: "#60a6bf",
+          }}
+          menuButton={({ open }) => (
+            <MenuButton className="Navigation__btn">
+              {open ? <VscChromeClose /> : <GiHamburgerMenu />}
+            </MenuButton>
+          )}
+        >
+          <MenuItem className="Navigation__menu-item">
+            <NavLink
+              exact
+              to="/"
+              className="Navigation__link"
+              activeClassName="Navigation__link_active"
+            >
+              <HomeRoundedIcon className="Navigation__icon" />
+              Home
+            </NavLink>
+          </MenuItem>
+          <MenuItem>
+            <NavLink
+              to="/top"
+              className="Navigation__link"
+              activeClassName="Navigation__link_active"
+            >
+              <LocalActivityRoundedIcon className="Navigation__icon" />
+              Top
+            </NavLink>
+          </MenuItem>
+          <MenuItem>
+            <NavLink
+              exact
+              to="/movies"
+              className="Navigation__link"
+              activeClassName="Navigation__link_active"
+            >
+              <PageviewRoundedIcon className="Navigation__icon" />
+              Search
+            </NavLink>
+          </MenuItem>
+          <MenuDivider />
+          <MenuHeader className="Navigation__devider">My Lists</MenuHeader>
+          <MenuItem>
+            <NavLink
+              to={{ pathname: `/favorite` }}
+              className="Navigation__link"
+              activeClassName="Navigation__link_active"
+            >
+              <FavoriteRoundedIcon className="Navigation__icon" />
+              Favorite
+            </NavLink>
+          </MenuItem>
+          <MenuItem>
+            <NavLink
+              to={{ pathname: `/watched` }}
+              className="Navigation__link"
+              activeClassName="Navigation__link_active"
+            >
+              <MovieFilterRoundedIcon className="Navigation__icon" />
+              Watched
+            </NavLink>
+          </MenuItem>
+          <MenuItem>
+            <NavLink
+              to={{ pathname: `/queue` }}
+              className="Navigation__link"
+              activeClassName="Navigation__link_active"
+            >
+              <QueuePlayNextRoundedIcon className="Navigation__icon" />
+              Queue
+            </NavLink>
+          </MenuItem>
+        </Menu>
+      </motion.nav>
 
-{
-  <div className="Navigation__desktop">
-    <ul className="Navigation__list">
-      <li className="Navigation__item">
-        <NavLink to="/">Home</NavLink>
-      </li>
-      <li className="Navigation__item">
-        <NavLink to="/top">Top</NavLink>
-      </li>
-      <li className="Navigation__item">
-        <NavLink to="/movies">Search</NavLink>
-      </li>
-      <li>
-        <div className="dropdown">
-          <button className="dropbtn">My lists</button>
-          <div className="dropdown-content">
-            <ul>
-              <li className="Navigation__item">
-                <NavLink to={{ pathname: `/favorite` }}>Favorite</NavLink>
-              </li>
-              <li className="Navigation__item">
-                <NavLink to={{ pathname: `/watched` }}>Watched</NavLink>
-              </li>
-              <li className="Navigation__item">
-                <NavLink to={{ pathname: `/queue` }}>Queue</NavLink>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>;
-}
-
-{
-  /* <div className="Navigation__mobile">
-  <button className="Navigation__btn" type="button" onClick={handleMenuOpen}>
-    {!isMenuOpen && <GiHamburgerMenu />}
-  </button>
-
-  <div
-    className={classnames("Navigation__mobile-menu", {
-      "Navigation__mobile-menu--open": isMenuOpen,
-    })}
-  >
-    <nav className="Navigation-mobile">
-      <ul className="Navigation__list">
-        <li className="Navigation__item">
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li className="Navigation__item">
-          <NavLink to="/top">Top</NavLink>
-        </li>
-        <li className="Navigation__item">
-          <NavLink to="/movies">Search</NavLink>
-        </li>
-        <ul>
-          <li className="Navigation__item">
-            <NavLink to={{ pathname: `/favorite` }}>Favorite</NavLink>
+      <motion.nav
+        initial={{ opacity: 0, y: -50 }}
+        exit={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="Navigation__desktop"
+      >
+        <NavLink className="Navigation__logo" exact to="/">
+          <BiCameraMovie className="Navigation__logo--icon" />
+          MovieLib
+        </NavLink>
+        <ul className="Navigation__list__desktop">
+          <li className="Navigation__item__desktop">
+            <NavLink
+              exact
+              className="Navigation__link__desktop"
+              activeClassName="Navigation__link__desktop__active"
+              to="/"
+            >
+              Home
+            </NavLink>
           </li>
-          <li className="Navigation__item">
-            <NavLink to={{ pathname: `/watched` }}>Watched</NavLink>
+          <li className="Navigation__item__desktop">
+            <NavLink
+              className="Navigation__link__desktop"
+              activeClassName="Navigation__link__desktop__active"
+              to="/top"
+            >
+              Top
+            </NavLink>
           </li>
-          <li className="Navigation__item">
-            <NavLink to={{ pathname: `/queue` }}>Queue</NavLink>
+          <li className="Navigation__item__desktop">
+            <NavLink
+              className="Navigation__link__desktop"
+              activeClassName="Navigation__link__desktop__active"
+              to="/movies"
+            >
+              Search
+            </NavLink>
           </li>
         </ul>
-      </ul>
-    </nav>
 
-    <button className="Navigation__btn" type="button" onClick={handleMenuClose}>
-      {isMenuOpen && <VscChromeClose />}
-    </button>
-  </div>
-</div>; */
+        <div className="Navigation__movies-list__wrapper">
+          <p className="Navigation__text">My lists</p>
+
+          <ul className="Navigation__movies-list">
+            <li className="Navigation__movies-list__item">
+              <NavLink
+                className="Navigation__movies-list__link"
+                activeClassName="Navigation__movies-list__link__active"
+                to={{ pathname: `/favorite` }}
+              >
+                Favorite
+              </NavLink>
+            </li>
+            <li className="Navigation__movies-list__item">
+              <NavLink
+                className="Navigation__movies-list__link"
+                activeClassName="Navigation__movies-list__link__active"
+                to={{ pathname: `/watched` }}
+              >
+                Watched
+              </NavLink>
+            </li>
+            <li className="Navigation__movies-list__item">
+              <NavLink
+                className="Navigation__movies-list__link"
+                activeClassName="Navigation__movies-list__link__active"
+                to={{ pathname: `/queue` }}
+              >
+                Queue
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </motion.nav>
+    </>
+  );
 }

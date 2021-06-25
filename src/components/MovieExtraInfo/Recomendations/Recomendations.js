@@ -13,10 +13,10 @@ export default function Reviews() {
   const dispatch = useDispatch();
   const { params } = useRouteMatch();
 
-  useEffect(
-    () => dispatch(moviesOperations.fetchMovieRecomendations(params.id)),
-    [dispatch, params.id]
-  );
+  useEffect(() => {
+    dispatch(moviesOperations.fetchMovieRecomendations(params.id));
+    recoRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [dispatch, params.id]);
 
   const recoRef = useRef();
   const recomendationList = useSelector(
@@ -34,7 +34,7 @@ export default function Reviews() {
           initial={{ opacity: 0, y: -50 }}
           exit={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
-          className="container"
+          className="container Recomendations__container"
         >
           <h2 className="Recomendations__title">Recomendations</h2>
           <MovieList moviesList={recomendationList} />

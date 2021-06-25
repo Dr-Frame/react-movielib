@@ -25,6 +25,7 @@ export default function Favorite() {
   return (
     <section className="Queue">
       <div className="container">
+        <h1 className="Queue__title">Queue list</h1>
         {queue.length === 0 ? (
           <motion.p
             initial={{ opacity: 0 }}
@@ -38,9 +39,9 @@ export default function Favorite() {
         ) : (
           <MovieList
             moviesList={queue}
-            page={page}
+            /*  page={page}
             handlePageChange={handlePageChange}
-            totalResults={queue.length}
+            totalResults={queue.length} */
           />
         )}
       </div>

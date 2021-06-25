@@ -38,14 +38,20 @@ export default function Reviews() {
             {reviews.length === 0 ? (
               <p className="Reviews__no-review"> There is no review yet</p>
             ) : (
-              reviews.map(({ id, author, content }) => (
-                <li key={id} className="Reviews__item">
-                  <p className="Reviews__author">
-                    <span>Author:</span> {author}
-                  </p>
-                  <p className="Reviews__descr">{content}</p>
-                </li>
-              ))
+              reviews.map(
+                ({ id, author, content, author_details: { rating } }) => (
+                  <li key={id} className="Reviews__item">
+                    <p className="Reviews__author">
+                      <span>Author:</span> {author}
+                    </p>
+                    <p className="Reviews__author">
+                      <span>Vote:</span>
+                      {rating}
+                    </p>
+                    <p className="Reviews__descr">{content}</p>
+                  </li>
+                )
+              )
             )}
           </ul>
         </motion.div>
