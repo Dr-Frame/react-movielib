@@ -25,7 +25,6 @@ const fetchSearchMovies =
 
     try {
       await axios.get(link).then(({ data }) => {
-        console.log(data);
         dispatch(movieActions.searchMovieSuccess(data.results));
         dispatch(movieActions.fetchTotalResults(data.total_results));
         dispatch(movieActions.fetchTotalPages(data.total_pages));
@@ -198,7 +197,6 @@ const fetchTopRatedMOvies =
 
     try {
       await axios.get(link).then(({ data }) => {
-        console.log(data);
         dispatch(movieActions.fetchTopRatedMoviesSuccess(data.results));
         dispatch(movieActions.fetchTotalResults(data.total_results));
         dispatch(movieActions.fetchTotalPages(data.total_pages));

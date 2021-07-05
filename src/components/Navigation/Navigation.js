@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Navigation.scss";
-import moviesSelectors from "../../redux/movies/movies-selectors";
-import moviesActions from "../../redux/movies/movies-actions";
-import { NavLink, useLocation, useRouteMatch } from "react-router-dom";
+
+import { NavLink } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
-import { useDispatch, useSelector } from "react-redux";
 import {
   Menu,
   MenuItem,
@@ -20,7 +18,6 @@ import PageviewRoundedIcon from "@material-ui/icons/PageviewRounded";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
 import QueuePlayNextRoundedIcon from "@material-ui/icons/QueuePlayNextRounded";
 import MovieFilterRoundedIcon from "@material-ui/icons/MovieFilterRounded";
-import TheatersRoundedIcon from "@material-ui/icons/TheatersRounded";
 import { BiCameraMovie } from "react-icons/bi";
 import { motion } from "framer-motion";
 

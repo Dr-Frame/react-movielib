@@ -3,7 +3,7 @@ import "./MovieSearch.scss";
 import { useSelector, useDispatch } from "react-redux";
 import moviesOperations from "../../redux/movies/movies-operations";
 import moviesSelectors from "../../redux/movies/movies-selectors";
-import moviesActions from "../../redux/movies/movies-actions";
+
 import MovieList from "../../components/MovieList";
 import { useLocation, useHistory } from "react-router";
 import queryString from "query-string";
@@ -69,7 +69,7 @@ export default function MovieSearch() {
   };
 
   const totalResults = useSelector(moviesSelectors.getTotalResults);
-  const isLoading = useSelector(moviesSelectors.getLoading);
+
   //для пагинации функция
   const handlePageChange = (pageNumber) => {
     setPage(pageNumber);

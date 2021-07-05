@@ -1,19 +1,16 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./MovieDetailsPage.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
   useLocation,
   useRouteMatch,
   useHistory,
-  useParams,
   NavLink,
 } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 //components
 import Cast from "../MovieExtraInfo/Cast";
 import Reviews from "../MovieExtraInfo/Reviews";
-import MovieImages from "../MovieExtraInfo/MovieImages";
-import SimilarMovies from "../MovieExtraInfo/SimilarMovies";
 import Crew from "../MovieExtraInfo/Crew";
 import Recomendations from "../MovieExtraInfo/Recomendations";
 
@@ -25,7 +22,6 @@ import Fallback from "../Fallback";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
 import QueuePlayNextRoundedIcon from "@material-ui/icons/QueuePlayNextRounded";
 import MovieFilterRoundedIcon from "@material-ui/icons/MovieFilterRounded";
-import classnames from "classnames";
 
 export default function MovieDetailsPage() {
   const dispatch = useDispatch();
@@ -34,8 +30,7 @@ export default function MovieDetailsPage() {
   const match = useRouteMatch();
   const { params } = match;
   const history = useHistory();
-  console.log(location);
-  console.log(history);
+
   //рендерим фильм исходя из айди полученого от мувилиста через params
   useEffect(() => {
     dispatch(moviesOperations.fetchMovieDetails(params.id));

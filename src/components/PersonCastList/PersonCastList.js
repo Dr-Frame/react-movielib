@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router";
+import { useLocation } from "react-router";
 import "./PersonCastList.scss";
 import moviesSelectors from "../../redux/movies/movies-selectors";
 import { NavLink } from "react-router-dom";
@@ -8,9 +8,7 @@ import { NavLink } from "react-router-dom";
 export default function PersonCastList({ movieList }) {
   const location = useLocation();
   const isLoading = useSelector(moviesSelectors.getLoading);
-  const history = useHistory();
-  console.log(location);
-  console.log(history);
+
   return (
     <div>
       {!isLoading && movieList && (

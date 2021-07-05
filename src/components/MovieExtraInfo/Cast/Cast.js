@@ -8,13 +8,13 @@ import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import Fallback from "../../Fallback";
 
-export default function Cast({ ref }) {
+export default function Cast() {
   const dispatch = useDispatch();
   const location = useLocation();
   const { state } = location;
   const match = useRouteMatch();
   const { params } = match;
-  console.log(ref);
+
   const castRef = useRef();
 
   useEffect(() => {
@@ -82,26 +82,4 @@ export default function Cast({ ref }) {
       )}
     </section>
   );
-}
-
-//https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
-
-{
-  /* <div className="Cast__flip-card-inner">
-  <div className="Cast__flip-card-front">
-    {profile_path && (
-      <img
-        className="Cast__img"
-        src={`https://image.tmdb.org/t/p/w200/${profile_path}`}
-        alt={name}
-      ></img>
-    )}
-  </div>
-  <div className="Cast__flip-card-back">
-    <h4 className="Cast__name">{name}</h4>
-    <p className="Cast__char">
-      <span>Character:</span> {character}
-    </p>
-  </div>
-</div>; */
 }

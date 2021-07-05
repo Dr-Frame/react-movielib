@@ -30,7 +30,6 @@ export default function PersonDetails() {
   const isLoading = useSelector(moviesSelectors.getLoading);
   const isExtraLoading = useSelector(moviesSelectors.getIsExtraLoading);
 
-  console.log(personParticipation);
   return (
     <section className="Person">
       {isLoading ? (

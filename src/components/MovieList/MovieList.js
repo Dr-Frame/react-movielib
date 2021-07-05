@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./MovieList.scss";
 import moviesSelectors from "../../redux/movies/movies-selectors";
 import { useSelector } from "react-redux";
