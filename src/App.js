@@ -5,6 +5,7 @@ import ScrollArrow from "./components/ScrollArrow";
 import Fallback from "./components/Fallback";
 import { AnimatePresence } from "framer-motion";
 import Footer from "./components/Footer";
+import { ToastContainer } from "react-toastify";
 
 const Homeview = lazy(() =>
   import("./view/Homeview/Homeview" /*webpackChunkName: "HomePage" */)
@@ -84,6 +85,8 @@ function App() {
           </Suspense>
         </main>
         <Footer />
+        <ToastContainer limit={6} />
+
         <ScrollArrow />
       </AnimatePresence>
     </>

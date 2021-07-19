@@ -48,15 +48,16 @@ export default function MovieList({
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -50 }}
-      exit={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-    >
+    <div>
       {isLoading ? (
         <Fallback />
       ) : (
-        <div className="MovieList__wrapper">
+        <motion.div
+          className="MovieList__wrapper"
+          initial={{ opacity: 0, y: -50 }}
+          exit={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
           <ul className="MovieList">
             {moviesList?.map(
               ({
@@ -179,8 +180,8 @@ export default function MovieList({
               itemClass="pagination__not-active-li"
             />
           )}
-        </div>
+        </motion.div>
       )}
-    </motion.div>
+    </div>
   );
 }

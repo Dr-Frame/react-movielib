@@ -1,0 +1,45 @@
+@import "../../styles/parshals.scss";
+
+.notify--add__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.notify--add__icon {
+  font-size: 60px;
+  color: $secondary-element-color;
+}
+
+.notify--add__text span {
+  font-weight: 700;
+  color: $secondary-element-color;
+}
+
+.notify--delete__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.notify--delete__icon {
+  font-size: 60px;
+  color: $light-bgc-color;
+}
+
+.notify--delete__text span {
+  font-weight: 700;
+  color: $light-bgc-color;
+}
+
+.Toastify__toast-body {
+  /* padding: 10px 0px 10px 10px; */
+  padding-left: 10px;
+
+  text-align: center;
+}
+.Toastify__toast--success {
+  background-color: $light-bgc-color;
+}
+
+.Toastify__toast--error {
+  background-color: $secondary-element-color;
+}

@@ -22,6 +22,7 @@ import Fallback from "../Fallback";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
 import QueuePlayNextRoundedIcon from "@material-ui/icons/QueuePlayNextRounded";
 import MovieFilterRoundedIcon from "@material-ui/icons/MovieFilterRounded";
+import filmAddedNotify from "../Notification/Notification";
 
 export default function MovieDetailsPage() {
   const dispatch = useDispatch();
@@ -149,13 +150,7 @@ export default function MovieDetailsPage() {
   return (
     <section className="MovieDetailsPage">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0 }}
-          exit={{ opacity: 0 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="MovieDetails__wrapper"
-        >
+        <div className="MovieDetails__wrapper">
           <div className="MovieDetailsPage__go-back-wrapper">
             <button
               className="MovieDetailsPage__go-back"
@@ -184,6 +179,10 @@ export default function MovieDetailsPage() {
                         dispatch(
                           movieActions.deleteFromFavourite(currentMovie.id)
                         );
+                        filmAddedNotify.deleteFromListSuccessfully(
+                          title,
+                          "favourite"
+                        );
                         setIsMovieIncludedInFavourites(false);
                       }}
                     >
@@ -197,9 +196,13 @@ export default function MovieDetailsPage() {
                   <li className="MovieDetailsPage__btn-pack__list">
                     <button
                       className="MovieDetailsPage__btn-pack__item"
-                      onClick={() =>
-                        dispatch(movieActions.addToFavourite(currentMovie))
-                      }
+                      onClick={() => {
+                        dispatch(movieActions.addToFavourite(currentMovie));
+                        filmAddedNotify.addedToListSuccessfully(
+                          title,
+                          "favourite"
+                        );
+                      }}
                     >
                       <FavoriteRoundedIcon className="MovieDetailsPage__btn--not-added" />
                     </button>
@@ -216,6 +219,10 @@ export default function MovieDetailsPage() {
                         dispatch(
                           movieActions.deleteFromWatched(currentMovie.id)
                         );
+                        filmAddedNotify.deleteFromListSuccessfully(
+                          title,
+                          "watched"
+                        );
                         setIsMovieIncludedInWatched(false);
                       }}
                     >
@@ -229,9 +236,13 @@ export default function MovieDetailsPage() {
                   <li className="MovieDetailsPage__btn-pack__list">
                     <button
                       className="MovieDetailsPage__btn-pack__item"
-                      onClick={() =>
-                        dispatch(movieActions.addToWatched(currentMovie))
-                      }
+                      onClick={() => {
+                        dispatch(movieActions.addToWatched(currentMovie));
+                        filmAddedNotify.addedToListSuccessfully(
+                          title,
+                          "watched"
+                        );
+                      }}
                     >
                       <MovieFilterRoundedIcon className="MovieDetailsPage__btn--not-added" />
                     </button>
@@ -246,6 +257,10 @@ export default function MovieDetailsPage() {
                       className="MovieDetailsPage__btn-pack__item"
                       onClick={() => {
                         dispatch(movieActions.deleteFromQueue(currentMovie.id));
+                        filmAddedNotify.deleteFromListSuccessfully(
+                          title,
+                          "queue"
+                        );
                         setIsMovieIncludedInQueue(false);
                       }}
                     >
@@ -259,9 +274,10 @@ export default function MovieDetailsPage() {
                   <li className="MovieDetailsPage__btn-pack__list">
                     <button
                       className="MovieDetailsPage__btn-pack__item"
-                      onClick={() =>
-                        dispatch(movieActions.addToQueue(currentMovie))
-                      }
+                      onClick={() => {
+                        dispatch(movieActions.addToQueue(currentMovie));
+                        filmAddedNotify.addedToListSuccessfully(title, "queue");
+                      }}
                     >
                       <QueuePlayNextRoundedIcon className="MovieDetailsPage__btn--not-added" />
                     </button>
@@ -421,7 +437,7 @@ export default function MovieDetailsPage() {
               </div>
             </motion.div>
           )}
-        </motion.div>
+        </div>
       </div>
       <Switch>
         <Route path={`${match.path}/cast`}>

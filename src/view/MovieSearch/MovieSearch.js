@@ -27,6 +27,8 @@ export default function MovieSearch() {
   //если вернулись не с 1 страницы списка фильмов, то рендерим ее , если да, то рендерим 1
   const [page, setPage] = useState(location.page || 1);
 
+  const [isItfirstLoad, setIsItfirstLoad] = useState(true);
+
   //при маунте убираем список популярных фильмов, что бы лист был пустой
   useEffect(() => {
     dispatch(moviesOperations.clearMovieList());
@@ -34,9 +36,9 @@ export default function MovieSearch() {
 
   //если слова запроса нету - не рендерим, если есть запрос и рендер списка
   useEffect(() => {
-    if (query === "") {
+    /* if (query === "") {
       return;
-    }
+    } */
     dispatch(moviesOperations.fetchSearchMovies(query, page));
     window.scrollTo({
       top: 0,
@@ -66,6 +68,7 @@ export default function MovieSearch() {
     setPage(1);
     dispatch(moviesOperations.fetchSearchMovies(query));
     location.search = search;
+    setIsItfirstLoad(false);
   };
 
   const totalResults = useSelector(moviesSelectors.getTotalResults);
@@ -96,6 +99,11 @@ export default function MovieSearch() {
           <button className="MovieSearch__btn" type="submit">
             Search
           </button>
+          {!isItfirstLoad && moviesList.length === 0 && (
+            <p className="MovieSearch__error-message">
+              No matches found! Try again
+            </p>
+          )}
         </motion.form>
 
         <MovieList
