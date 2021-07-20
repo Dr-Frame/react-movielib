@@ -1,5 +1,6 @@
 import axios from "axios";
 import movieActions from "./movies-actions";
+import notification from "../../components/Notification/Notification";
 
 const key = "3550330ecc32a34c7342dbd44dd96d6e";
 
@@ -25,11 +26,15 @@ const fetchSearchMovies =
 
     try {
       await axios.get(link).then(({ data }) => {
+        if (data.results.length === 0) {
+          notification.handleEmptyRequestNotify();
+        }
         dispatch(movieActions.searchMovieSuccess(data.results));
         dispatch(movieActions.fetchTotalResults(data.total_results));
         dispatch(movieActions.fetchTotalPages(data.total_pages));
       });
     } catch (error) {
+      console.log(error.response);
       dispatch(movieActions.searchMovieError(error));
     }
   };

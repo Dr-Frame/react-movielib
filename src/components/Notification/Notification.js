@@ -3,6 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./Notification.scss";
 import { GiFilmProjector } from "react-icons/gi";
 import { GiFilmSpool } from "react-icons/gi";
+import { BiCommentError } from "react-icons/bi";
 
 const notificationSettings = {
   position: "top-right",
@@ -38,6 +39,15 @@ const NotifyDeleteSucces = ({ title, list }) => {
   );
 };
 
+const EmptyRequestNotify = () => {
+  return (
+    <div className="notify--empty__wrapper">
+      <BiCommentError className="notify--empty__icon" />
+      <p className="notify--empty__text">No matches found, please try again!</p>
+    </div>
+  );
+};
+
 const addedToListSuccessfully = (title, list) => {
   toast.success(
     <NotifyAddedSucces title={title} list={list} />,
@@ -52,4 +62,12 @@ const deleteFromListSuccessfully = (title, list) => {
   );
 };
 
-export default { addedToListSuccessfully, deleteFromListSuccessfully };
+const handleEmptyRequestNotify = () => {
+  toast.error(<EmptyRequestNotify />, notificationSettings);
+};
+
+export default {
+  addedToListSuccessfully,
+  deleteFromListSuccessfully,
+  handleEmptyRequestNotify,
+};

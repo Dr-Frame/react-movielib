@@ -3,6 +3,7 @@
 .notify--add__wrapper {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .notify--add__icon {
@@ -18,6 +19,7 @@
 .notify--delete__wrapper {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .notify--delete__icon {
@@ -30,16 +32,26 @@
   color: $light-bgc-color;
 }
 
-.Toastify__toast-body {
-  /* padding: 10px 0px 10px 10px; */
-  padding-left: 10px;
+.notify--empty__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.notify--empty__icon {
+  font-size: 50px;
+  color: $light-bgc-color;
+}
+
+.Toastify__toast-body {
+  padding-left: 10px;
   text-align: center;
 }
+
 .Toastify__toast--success {
-  background-color: $light-bgc-color;
+  background: $light-bgc-color;
 }
 
 .Toastify__toast--error {
-  background-color: $secondary-element-color;
+  background: $secondary-element-color;
 }
